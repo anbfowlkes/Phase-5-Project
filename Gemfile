@@ -31,6 +31,8 @@ group :development do
   gem "web-console"
 end
 
-gem 'rest-client', '~> 1.8'
+gem 'rest-client', '~> 2.0.1'
 
 gem 'json', '~> 2.6', '>= 2.6.2'
+
+gem 'rack-cors'
