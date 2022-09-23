@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react'
 import * as d3 from 'd3'
+// import { regressionLinear } from 'd3'
+import { line } from 'd3'
 
 
 const FootballChart = () => {
@@ -82,6 +84,11 @@ const FootballChart = () => {
         //   .x(d => d.x)
         //   .y(d => d.y)
         //   .domain([0, 100])
+
+        // const regression = d3.line()
+        // .x(d => d.x)
+        // .y(d => d.y)
+        // .domain([0, 100])
 
         svg.append('g')
             .call(xAxis)

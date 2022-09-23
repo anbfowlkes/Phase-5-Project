@@ -16,54 +16,49 @@ const DynamicChart = () => {
 
     let [yAxisStat, setYAxisStat] = useState('')
 
+    let [xRegion, setXRegion] = useState([null,null])
+
+    let [yRegion, setYRegion] = useState([null, null])
+
     let getFootballData = async () => {
         let req = await fetch('http://localhost:2000/get')
         let res = await req.json()
         console.log(res)
         setTeamData(res)
         
-        let array = []
+        let optionsArray = []
         for (let item in res[0]) {
-            array.push(item)
+            optionsArray.push(item)
         }
-        array.sort((a,b) => {
+        optionsArray.sort((a,b) => {
             return (a < b ? -1 : 1)
         })
         // console.log(array)
-        setStats(array)
+        setStats(optionsArray)
 
         // console.log('Look here: ', res[0].FieldGoalsMade)
         // console.log('Look here again: ', res[0].PassingYards)
         let arr = []
+        let xArr = []
+        let yArr = []
         for (let i = 0; i < res.length; i++) {
-            arr.push([res[i].FieldGoalsMade, res[i].PassingYards])
-            // arr.push([res[i][xAxisStat], res[i][yAxisStat]])
+            // arr.push([res[i].FieldGoalsMade, res[i].PassingYards])
+            arr.push([res[i][xAxisStat], res[i][yAxisStat]])
+            xArr.push(res[i][xAxisStat])
+            yArr.push(res[i][yAxisStat])
         }
         // console.log(arr)
         setData(arr)
+        setXRegion([Math.min(...xArr),Math.max(...xArr)])
+        setYRegion([Math.min(...yArr),Math.max(...yArr)])
+
     }
 
     useEffect(() => {
         getFootballData()
     }, [xAxisStat, yAxisStat])
 
-
-    // let [data, setData] = useState([
-    //     [90, 20],
-    //     [20, 100],
-    //     [66, 44],
-    //     [53, 80],
-    //     [24, 182],
-    //     [80, 72],
-    //     [10, 76],
-    //     [33, 150],
-    //     [100, 15]
-    // ])
-
     const svgRef = useRef()
-
-    // plan is to set up a container, then set up the scaling, then set up axis,
-    // then set up axis labeling, then set up svg data
 
     useEffect(() => {
         // console.log('running')
@@ -76,12 +71,17 @@ const DynamicChart = () => {
             .style('margin-top', '100px');
 
         const xScale = d3.scaleLinear()
-            .domain([15, 50])
+            .domain([xRegion[0]-20, xRegion[1]+20])
             .range([0, w]);
+            // .domain([15, 50])
+            // .range([0, w]);
+
         // scaleLinear maps [0, 100] to [0, w], so 0 -> 0, 100 -> w, etc
         const yScale = d3.scaleLinear()
-            .domain([3000, 6000])
+            .domain([yRegion[0]-20, yRegion[1]+20])
             .range([h, 0]);
+            // .domain([3000, 6000])
+            // .range([h, 0]);
         // 0 -> h, 200 -> 0
 
         const xAxis = d3.axisBottom(xScale).ticks(10)
