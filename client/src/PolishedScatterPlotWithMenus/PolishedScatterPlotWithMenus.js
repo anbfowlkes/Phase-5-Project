@@ -174,6 +174,7 @@ let PolishedScatterPlotWithMenus = () => {
                         yValue={yValue} 
                         tooltipFormat={xAxisTickFormatter}
                         circleRadius={7}
+                        innerHeight={innerHeight}
                     />
 
                 </g>

@@ -1,14 +1,16 @@
 import Regression from './Regression'
 
-const Marks = ( { data, xScale, yScale, xValue, yValue, tooltipFormat, circleRadius } ) => {
+const Marks = ( { data, xScale, yScale, xValue, yValue, tooltipFormat, circleRadius, innerHeight } ) => {
     
     let cxArray = []
 
     let cyArray = []
 
     data.map((d) => {
-        cxArray.push(xScale(xValue(d)))
-        cyArray.push(yScale(yValue(d)))
+        // cxArray.push(xScale(xValue(d)))
+        // cyArray.push(yScale(yValue(d)))
+        cxArray.push((xValue(d)))
+        cyArray.push((yValue(d)))
     })
 
     // console.log('cx array: ', cxArray)
@@ -29,7 +31,14 @@ const Marks = ( { data, xScale, yScale, xValue, yValue, tooltipFormat, circleRad
                 </circle>
                 )
             })}
-            <Regression data={data} cxArray={cxArray} cyArray={cyArray} />
+            <Regression 
+                data={data} 
+                cxArray={cxArray} 
+                cyArray={cyArray} 
+                innerHeight={innerHeight}
+                xScale={xScale}
+                yScale={yScale}
+            />
         </>
     )
 }

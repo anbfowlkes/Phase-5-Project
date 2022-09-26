@@ -1,4 +1,4 @@
-let Regression = ({ data, cxArray, cyArray }) => {
+let Regression = ({ data, cxArray, cyArray, innerHeight, xScale, yScale }) => {
 
     console.log('regression data: ', data)
 
@@ -18,32 +18,65 @@ let Regression = ({ data, cxArray, cyArray }) => {
     // console.log('xMean: ', xMean)
     // console.log('yMean: ', yMean)
 
-    let getCorrelation = (cxArray, cyArray) => {
-        let xyResProd = 0
-        let xResSquare = 0
-        let yResSquare = 0
+    let getRegression = (cxArray, cyArray) => {
+        let xyResProdSum = 0
+        let xResSquareSum = 0
+        let yResSquareSum = 0
         for (let i = 0; i < cxArray.length; i++) {
-            xyResProd = xyResProd + ((cxArray[i] - xMean)*(cyArray[i] - yMean))
+            xyResProdSum = xyResProdSum + ((cxArray[i] - xMean)*(cyArray[i] - yMean))
             // console.log('cxArray[i] - xMean: ', cxArray[i] - xMean)
             // console.log('cyArray[i] - yMean: ', cyArray[i] - yMean)
             // console.log('xyResProd: ', xyResProd)
-            xResSquare = xResSquare + ((cxArray[i] - xMean) ** 2)
-            yResSquare = yResSquare + ((cyArray[i] - yMean) ** 2)
+            xResSquareSum = xResSquareSum + ((cxArray[i] - xMean) ** 2)
+            yResSquareSum = yResSquareSum + ((cyArray[i] - yMean) ** 2)
         }
-        let cor = (-1) * ((xyResProd) / Math.sqrt((xResSquare) * (yResSquare)))
-        if (1.0 - cor < .00001) {
-            return 1
+        let correlation = ((xyResProdSum) / Math.sqrt((xResSquareSum) * (yResSquareSum)))
+        if (1.0 - correlation < .00001) {
+            correlation = 1
         }
-        return cor
+        let standDevY = Math.sqrt((yResSquareSum / (cyArray.length - 1)))
+        let standDevX = Math.sqrt((xResSquareSum) / (cxArray.length - 1))
+        let slope = (correlation) * (standDevY / standDevX)
+        let yInt = yMean - (slope * xMean)
+        return [correlation, standDevY, standDevX, slope, yInt]
     }
-    let correlation = getCorrelation(cxArray, cyArray)
-    console.log('correlation: ', getCorrelation(cxArray, cyArray))
+    let [correlation, standDevY, standDevX, slope, yInt] = getRegression(cxArray, cyArray)
+    console.log('correlation: ', correlation)
+    console.log('standDevY: ', standDevY)
+    console.log('standDevX: ', standDevX)
+    console.log('slope: ', slope)
+    console.log('yInt: ', yInt)
+    console.log('innerHeight: ', innerHeight)
 
+    let getMinMax = (cxArray) => {
+        let min = 999999999999999
+        let max = 0
+        cxArray.forEach((val) => {
+            if (val < min) {
+                min = val
+            }
+            if (val > max) {
+                max = val
+            }
+        })
+        return [min, max]
+    }
+
+    let [min, max] = getMinMax(cxArray)
+
+    let regFun = (x) => {
+        return slope * x + yInt
+    }
+    
 
     return (
-        <div>
-
-        </div>
+        <line 
+            className='regressionLine' 
+            x1={xScale(min)} 
+            y1={yScale(regFun(min))} 
+            x2={xScale(max)} 
+            y2={yScale(regFun(max))} 
+        />
     )
 }
 
