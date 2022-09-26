@@ -6,7 +6,12 @@ import { AxisLeft } from './AxisLeft'
 import Marks from './Marks'
 import './PolishedScatterPlotWithMenus.css'
 import Dropdown from './Dropdown'
+import Regression from './Regression'
+import RegressionDisplay from './RegressionDisplay'
 import ReactDropdown from 'react-dropdown'
+import Switch from './Switch'
+// import ToggleButton from 'react-toggle-button'
+
 
 // number 9
 let PolishedScatterPlotWithMenus = () => {
@@ -19,6 +24,12 @@ let PolishedScatterPlotWithMenus = () => {
     const [xAttribute, setXAttribute] = useState(initialXAttribute)
     const initialYAttribute = 'AssistedTackles'
     const [yAttribute, setYAttribute] = useState(initialYAttribute)
+
+    let [regCor, setRegCor] = useState(null)
+    let [regSlope, setRegSlope] = useState(null)
+    let [regInt, setRegInt] = useState(null)
+
+    let [regToggle, setRegToggle] = useState(false)
 
     if (!data) {
         return <pre>'Loading...'</pre>
@@ -57,7 +68,7 @@ let PolishedScatterPlotWithMenus = () => {
     let attributes = []
 
     columns.forEach((col) => {
-        if (col != 'TeamSeasonID' && col != 'TeamID') {
+        if (col != 'TeamSeasonID' && col != 'TeamID' && col != 'Season' && col != 'Team') {
             attributes.push({value: col, label: colDisplayer(col)})
         }
     })
@@ -114,72 +125,119 @@ let PolishedScatterPlotWithMenus = () => {
 
     // console.log(data.columns) // this console.logs all the columns of the data, which is what we want as the attributes in our menu dropdown
 
+    let cxArray = []
+
+    let cyArray = []
+
+    data.map((d) => {
+        // cxArray.push(xScale(xValue(d)))
+        // cyArray.push(yScale(yValue(d)))
+        cxArray.push((xValue(d)))
+        cyArray.push((yValue(d)))
+    })
+
+
     return (
         <>
-            <div className='menus-container'>
-                <span className='dropdown-label'>X:</span>
-                <ReactDropdown 
-                    options={attributes}
-                    value={xAttribute}
-                    onChange={({ value }) => setXAttribute(value)}
-                />
+            <div className='scatterPlotDiv'>
+                <div className='menuAndScatterPlot'>
+                    <div className='menus-container'>
+                        <span className='dropdown-label'>X:</span>
+                        <ReactDropdown 
+                            options={attributes}
+                            value={xAttribute}
+                            onChange={({ value }) => setXAttribute(value)}
+                        />
 
-                <span className='dropdown-label'>Y:</span>
-                <ReactDropdown 
-                    options={attributes}
-                    value={yAttribute}
-                    onChange={({ value }) => setYAttribute(value)}
-                />
-             </div>
+                        <span className='dropdown-label'>Y:</span>
+                        <ReactDropdown 
+                            options={attributes}
+                            value={yAttribute}
+                            onChange={({ value }) => setYAttribute(value)}
+                        />
+                    </div>
 
-            <svg width={width} height={height} >
+                    <svg width={width} height={height} >
 
-                <g transform={`translate(${margin.left},${margin.top})`}>
+                        <g transform={`translate(${margin.left},${margin.top})`}>
 
-                    <AxisBottom 
-                        xScale={xScale} 
-                        innerHeight={innerHeight} 
-                        tickFormat={xAxisTickFormatter} 
-                        tickOffset={20} 
-                    />
+                            <AxisBottom 
+                                xScale={xScale} 
+                                innerHeight={innerHeight} 
+                                tickFormat={xAxisTickFormatter} 
+                                tickOffset={20} 
+                            />
 
-                    <AxisLeft 
-                        yScale={yScale} 
-                        innerWidth={innerWidth} 
-                        tickOffset={7} 
-                    />
+                            <AxisLeft 
+                                yScale={yScale} 
+                                innerWidth={innerWidth} 
+                                tickOffset={7} 
+                            />
 
-                    <text 
-                        className='axis-label'
-                        x={innerWidth/2} 
-                        y={innerHeight + xAxisLabelOffset} 
-                        textAnchor='middle'
-                    >
-                        {xAxisLabel}
-                    </text>
+                            <text 
+                                className='axis-label'
+                                x={innerWidth/2} 
+                                y={innerHeight + xAxisLabelOffset} 
+                                textAnchor='middle'
+                            >
+                                {xAxisLabel}
+                            </text>
 
-                    <text 
-                        className='axis-label'
-                        textAnchor='middle'
-                        transform={`translate(${-yAxisLabelOffset}, ${innerHeight/2}) rotate(-90)`}     
-                    >
-                        {yAxisLabel}
-                    </text>
-                    
-                    <Marks 
-                        data={data} 
-                        xScale={xScale} 
-                        yScale={yScale} 
-                        xValue={xValue}
-                        yValue={yValue} 
-                        tooltipFormat={xAxisTickFormatter}
-                        circleRadius={7}
-                        innerHeight={innerHeight}
-                    />
+                            <text 
+                                className='axis-label'
+                                textAnchor='middle'
+                                transform={`translate(${-yAxisLabelOffset}, ${innerHeight/2}) rotate(-90)`}     
+                            >
+                                {yAxisLabel}
+                            </text>
+                            
+                            <Marks 
+                                data={data} 
+                                xScale={xScale} 
+                                yScale={yScale} 
+                                xValue={xValue}
+                                yValue={yValue} 
+                                tooltipFormat={xAxisTickFormatter}
+                                circleRadius={7}
+                                innerHeight={innerHeight}
+                            />
 
-                </g>
+                            {regToggle ? 
+                                <Regression 
+                                    data={data} 
+                                    cxArray={cxArray} 
+                                    cyArray={cyArray} 
+                                    xScale={xScale}
+                                    yScale={yScale}
+                                    setRegCor={setRegCor}
+                                    setRegSlope={setRegSlope}
+                                    setRegInt={setRegInt}
+                                /> : null
+                            }
 
-            </svg>
+                        </g>
+
+                    </svg>
+                </div>
+
+                <div className='regressionBox'>
+                    <div className='regHead'>
+                        <h3>{'View Regression Analysis'}</h3>
+                        <Switch regToggle={regToggle} setRegToggle={setRegToggle} />
+                    </div>
+                    <div className='regDispDiv'>
+                        {regToggle ? 
+                            <RegressionDisplay 
+                            regCor={regCor} 
+                            regSlope={regSlope} 
+                            regInt={regInt} 
+                            xAxisLabel={xAxisLabel}
+                            yAxisLabel={yAxisLabel}
+                            colDisplayer={colDisplayer}
+                        /> : null}
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

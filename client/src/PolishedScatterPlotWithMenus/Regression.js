@@ -1,4 +1,4 @@
-let Regression = ({ data, cxArray, cyArray, innerHeight, xScale, yScale }) => {
+let Regression = ({ data, cxArray, cyArray, xScale, yScale, setRegCor, setRegSlope, setRegInt }) => {
 
     console.log('regression data: ', data)
 
@@ -46,7 +46,6 @@ let Regression = ({ data, cxArray, cyArray, innerHeight, xScale, yScale }) => {
     console.log('standDevX: ', standDevX)
     console.log('slope: ', slope)
     console.log('yInt: ', yInt)
-    console.log('innerHeight: ', innerHeight)
 
     let getMinMax = (cxArray) => {
         let min = 999999999999999
@@ -67,6 +66,16 @@ let Regression = ({ data, cxArray, cyArray, innerHeight, xScale, yScale }) => {
     let regFun = (x) => {
         return slope * x + yInt
     }
+
+    let regFunInverse = (y) => {
+        return (y - yInt) / slope
+    }
+
+    setRegSlope(slope)
+    setRegInt(yInt)
+    setRegCor(correlation)
+
+    console.log(yScale.ticks()[0])
     
 
     return (

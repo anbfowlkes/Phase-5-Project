@@ -1,5 +1,3 @@
-import Regression from './Regression'
-
 const Marks = ( { data, xScale, yScale, xValue, yValue, tooltipFormat, circleRadius, innerHeight } ) => {
     
     let cxArray = []
@@ -31,14 +29,6 @@ const Marks = ( { data, xScale, yScale, xValue, yValue, tooltipFormat, circleRad
                 </circle>
                 )
             })}
-            <Regression 
-                data={data} 
-                cxArray={cxArray} 
-                cyArray={cyArray} 
-                innerHeight={innerHeight}
-                xScale={xScale}
-                yScale={yScale}
-            />
         </>
     )
 }
