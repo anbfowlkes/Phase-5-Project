@@ -4,6 +4,7 @@ import * as d3 from 'd3'
 import ChartZero from './Components/ChartZero'
 import FootballChart from './Components/FootballChart'
 import DynamicChart from './Components/DynamicChart'
+import PolishedScatterPlotWithMenus from './PolishedScatterPlotWithMenus/PolishedScatterPlotWithMenus'
 
 function App() {
 
@@ -19,15 +20,15 @@ function App() {
 
   return (
     <div>
-      <ChartZero />
+      {/* <ChartZero />
       <div id='gap'></div>
-      {/* <ChartOne /> */}
       <div id='chart'>
         <FootballChart />
       </div>
       <div id='gap'></div>
       <DynamicChart />
-      <div id='space'></div>
+      <div id='space'></div> */}
+      <PolishedScatterPlotWithMenus />
     </div>
   )
   
