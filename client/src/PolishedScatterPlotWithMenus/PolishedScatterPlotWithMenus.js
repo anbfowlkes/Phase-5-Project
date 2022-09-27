@@ -68,7 +68,7 @@ let PolishedScatterPlotWithMenus = () => {
     let attributes = []
 
     columns.forEach((col) => {
-        if (col != 'TeamSeasonID' && col != 'TeamID' && col != 'Season' && col != 'Team') {
+        if (col != 'TeamSeasonID' && col != 'TeamID' && col != 'Season' && col != 'Team' && col != 'Games' && col != 'TimeOfPossession' && col != 'OpponentTimeOfPossession' && col != 'SeasonType') {
             attributes.push({value: col, label: colDisplayer(col)})
         }
     })
@@ -141,20 +141,26 @@ let PolishedScatterPlotWithMenus = () => {
         <>
             <div className='scatterPlotDiv'>
                 <div className='menuAndScatterPlot'>
-                    <div className='menus-container'>
-                        <span className='dropdown-label'>X:</span>
-                        <ReactDropdown 
-                            options={attributes}
-                            value={xAttribute}
-                            onChange={({ value }) => setXAttribute(value)}
-                        />
 
-                        <span className='dropdown-label'>Y:</span>
-                        <ReactDropdown 
-                            options={attributes}
-                            value={yAttribute}
-                            onChange={({ value }) => setYAttribute(value)}
-                        />
+                <div className='menus-container'>
+                        <div>
+                            <span className='dropdown-label'>X:</span>
+                            <ReactDropdown 
+                                options={attributes}
+                                value={xAttribute}
+                                onChange={({ value }) => setXAttribute(value)}
+                            />
+                        </div>
+                        
+                        <div>
+                            <span className='dropdown-label'>Y:</span>
+                            <ReactDropdown 
+                                options={attributes}
+                                value={yAttribute}
+                                onChange={({ value }) => setYAttribute(value)}
+                            />  
+                        </div>
+                      
                     </div>
 
                     <svg width={width} height={height} >
@@ -218,6 +224,8 @@ let PolishedScatterPlotWithMenus = () => {
                         </g>
 
                     </svg>
+
+
                 </div>
 
                 <div className='regressionBox'>

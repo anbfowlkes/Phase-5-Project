@@ -76,13 +76,34 @@ let Regression = ({ data, cxArray, cyArray, xScale, yScale, setRegCor, setRegSlo
     setRegCor(correlation)
 
     console.log(yScale.ticks()[0])
+    let minX = xScale.ticks()[0]
+    let minY = yScale.ticks()[0]
     
+    // let x1 = null
+    // let x2 = null
+    
+    // if (correlation >= 0) {
+    //     if (yScale(regFun(min)) < yScale(minY)) {
+    //         x1 = regFunInverse(minY)
+    //     } else {
+    //         x1 = min
+    //     }
+    // }
+    // if (correlation < 0) {
+    //     if(yScale(regFun(min)) > yScale(minY)) {
+    //         x1 = regFunInverse(minY)
+    //     } else {
+    //         x1 = min
+    //     }
+    // }
 
     return (
         <line 
             className='regressionLine' 
             x1={xScale(min)} 
             y1={yScale(regFun(min))} 
+            // x1={xScale(x1)}
+            // y1={yScale(regFun(x1))}
             x2={xScale(max)} 
             y2={yScale(regFun(max))} 
         />

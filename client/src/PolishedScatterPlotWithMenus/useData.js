@@ -20,12 +20,21 @@ export const useData = () => {
         return colsArray
     }
 
+    let timeToNum = (time) => {
+        time = time.split('')
+        let secs = parseFloat(time[3] + time[4])
+        let mins = parseFloat(time[0] + time[1])
+        return (((mins * 60) + secs) / 60).toFixed(2)
+    }
+
     useEffect(() => {
         let row = (d) => {
             // d.ScoreQuarter1 = parseFloat(d.ScoreQuarter1)
             // d.ScoreQuarter2 = parseFloat(d.ScoreQuarter2)
             // d.ScoreQuarter3 = parseFloat(d.ScoreQuarter3)
             // d.ScoreQuarter4 = parseFloat(d.ScoreQuarter4)
+            // d.TimeOfPossession = timeToNum(TimeOfPossession)
+            // d.OpponentTimeOfPossession = timeToNum(OpponentTimeOfPossession)
 
             // maybe need to convert TimeOfPossession and OpponentTimeOfPossession from time string format into a number
             return d

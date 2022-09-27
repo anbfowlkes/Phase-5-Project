@@ -1,4 +1,4 @@
-const Marks = ( { data, xScale, yScale, xValue, yValue, tooltipFormat, circleRadius, innerHeight } ) => {
+const Marks = ( { data, xScale, yScale, xValue, yValue, tooltipFormat, circleRadius } ) => {
     
     let cxArray = []
 
@@ -25,7 +25,7 @@ const Marks = ( { data, xScale, yScale, xValue, yValue, tooltipFormat, circleRad
                     cy={yScale(yValue(d))} 
                     r={circleRadius}
                 >
-                    <title>{tooltipFormat(xValue(d))}</title>
+                    <title>{d.Team}</title>
                 </circle>
                 )
             })}
