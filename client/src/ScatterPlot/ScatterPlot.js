@@ -142,7 +142,7 @@ let ScatterPlot = () => {
             <div className='scatterPlotDiv'>
                 <div className='menuAndScatterPlot'>
 
-                <div className='menus-container'>
+                    <div className='menus-container'>
                         <div>
                             <span className='dropdown-label'>X:</span>
                             <ReactDropdown 

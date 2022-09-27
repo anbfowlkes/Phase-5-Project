@@ -5,9 +5,9 @@ export const AxisLeft = ( {yScale, innerHeight, tickFormat} ) => {
             return (
                 yScale.ticks().map((tickValue) => {
                     return (
-                    <g className='tick' key={tickValue} transform ={`translate(${yScale(tickValue)},0)`}>
+                    <g className='tick' key={tickValue} >
                         {/* <line y2={innerHeight} /> */}
-                        <text style={{textAnchor: 'middle'}} y={innerHeight + 15}>{tickFormat(tickValue)}</text>
+                        <text style={{textAnchor: 'middle'}} x={-40} y={yScale(tickValue)}>{tickFormat(tickValue)}</text>
                     </g>
                     )
                 }

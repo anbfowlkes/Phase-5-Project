@@ -1,4 +1,4 @@
-export const Marks = ( { data, xScale, yScale, xValue, yValue, tooltipFormat } ) => {
+export const Marks = ( { data, xScale, yScale, xValue, yValue, tooltipFormat, innerHeight } ) => {
     return (
         data.map((d) => {
             return (
@@ -6,11 +6,11 @@ export const Marks = ( { data, xScale, yScale, xValue, yValue, tooltipFormat } )
                 className='mark'
                 key={xValue(d)}
                 x={xScale(xValue(d))} 
-                y={0}
-                width={xScale.bandwidth()}
-                height={yScale(yValue(d))}  
+                y={yScale(yValue(d))}
+                width={xScale.bandwidth() / 2}
+                height={innerHeight - yScale(yValue(d))}  
                 >
-                    <title>{tooltipFormat(xValue(d))}</title>
+                    <title>{xValue(d)}</title>
                 </rect>
                 )
         })

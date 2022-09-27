@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   get '/get', to: 'application#getter'
 
-
+  get '/teams', to: 'application#teams'
 
 end

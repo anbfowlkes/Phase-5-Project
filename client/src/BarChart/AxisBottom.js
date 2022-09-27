@@ -5,10 +5,10 @@ export const AxisBottom = ( { xScale } ) => {
                 <g className='tick'>
                     <text 
                         key={tickValue}
-                        style={{textAnchor: 'end'}} 
+                        style={{textAnchor: 'end', width: '100px'}} 
                         dy='.32em' 
                         x={xScale(tickValue) + xScale.bandwidth() / 2}
-                        y={-5}
+                        y={550}
                         >
                             {tickValue}
                     </text>

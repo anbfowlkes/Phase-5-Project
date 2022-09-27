@@ -5,36 +5,78 @@ import { AxisBottom } from './AxisBottom'
 import { AxisLeft } from './AxisLeft'
 import { Marks } from './Marks'
 import './BarChart.css'
+import Dropdown from './Dropdown'
+import ReactDropdown from 'react-dropdown'
+
 
 // number 8
 let BarChart = () => {
 
-    let data = useData()
+    let {data, columns} = useData()
 
-    let width = 960
+    const initialYAttribute = 'AssistedTackles'
+    let [yAttribute, setYAttribute] = useState(initialYAttribute)
+
+    let width = 1200
     let height = 600
     let margin = { top: 40, right: 20, bottom: 80, left: 200 }
     let innerHeight = height - (margin.top + margin.bottom)
     let innerWidth = width - (margin.left + margin.right)
 
+
     if (!data) {
         return <pre>'Loading...'</pre>
     }
 
+    let colDisplayer = (col) => {
+        col = col.split('')
+        for (let i = col.length - 1; i > 0; i--) {
+            if ((col[i]).toUpperCase() === col[i]) {
+                col.splice(i, 0, ' ')
+                i--
+            }
+        }
+        let colString = ''
+        col.forEach((letter) => {
+            colString = colString + letter
+        })
+        return colString
+    }
+
+    let attributes = []
+
+    columns.forEach((col) => {
+        if (col != 'TeamSeasonID' && col != 'TeamID' && col != 'Season' && col != 'Team' && col != 'Games' && col != 'TimeOfPossession' && col != 'OpponentTimeOfPossession' && col != 'SeasonType') {
+            attributes.push({ value: col, label: colDisplayer(col) })
+        }
+    })
+
+    console.log('attributes: ', attributes)
+
     // the 'd' bellow represents one element (row) of the data
     //we're using a band scale which is useful for ordinal data
 
-    const xValue = (d) => d.Country
-    const yValue = (d) => d.Population
+    const xValue = (d) => d.Team
+    const yValue = (d) => d.AssistedTackles
+
+    // let xValArray = data.map(xValue)
+    // xValArray = xValArray.sort()
+
+    let sortedData = [...data]
+    sortedData = sortedData.sort((a,b) => {
+        return (a.AssistedTackles < b.AssistedTackles ? 1 : -1)
+    })
+    console.log(sortedData)
 
     let xScale = scaleBand()
-        .domain(data.map(yValue))
-        .range([0, innerWidth])
+        .domain(sortedData.map(xValue))
+        .range([innerWidth, 0])
         .paddingInner(0.15)
 
     let yScale = scaleLinear()
         .domain([0, max(data, yValue)])
-        .range([0, innerHeight])
+        .range([innerHeight, 0])
+        // .nice()
     
     // console.log(xScale.ticks())
     console.log(yScale.domain())
@@ -64,9 +106,24 @@ let BarChart = () => {
                     xValue={xValue} 
                     yValue={yValue} 
                     tooltipFormat={numFormatter}
+                    innerHeight={innerHeight}
                 />
 
+                
+
             </g>
+
+            <div className='menus-container'>
+                <div>
+                    <span className='dropdown-label'>X:</span>
+                    <ReactDropdown
+                        options={attributes}
+                        value={yAttribute}
+                        onChange={({ value }) => setYAttribute(value)}
+                    />
+                </div>
+
+            </div>
 
         </svg>
     )
