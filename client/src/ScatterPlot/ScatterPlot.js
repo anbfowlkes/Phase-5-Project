@@ -4,7 +4,7 @@ import { useData } from './useData'
 import { AxisBottom } from './AxisBottom'
 import { AxisLeft } from './AxisLeft'
 import Marks from './Marks'
-import './PolishedScatterPlotWithMenus.css'
+import './ScatterPlot.css'
 import Dropdown from './Dropdown'
 import Regression from './Regression'
 import RegressionDisplay from './RegressionDisplay'
@@ -14,11 +14,11 @@ import Switch from './Switch'
 
 
 // number 9
-let PolishedScatterPlotWithMenus = () => {
+let ScatterPlot = () => {
 
     // let allData = useData()
 
-    let {data, columns} = useData()
+    let {data, columns, teamData} = useData()
 
     const initialXAttribute = 'AssistedTackles'
     const [xAttribute, setXAttribute] = useState(initialXAttribute)
@@ -31,7 +31,7 @@ let PolishedScatterPlotWithMenus = () => {
 
     let [regToggle, setRegToggle] = useState(false)
 
-    if (!data) {
+    if (!data || !teamData) {
         return <pre>'Loading...'</pre>
     }
 
@@ -198,7 +198,8 @@ let PolishedScatterPlotWithMenus = () => {
                             </text>
                             
                             <Marks 
-                                data={data} 
+                                data={data}
+                                teamData={teamData}
                                 xScale={xScale} 
                                 yScale={yScale} 
                                 xValue={xValue}
@@ -250,4 +251,4 @@ let PolishedScatterPlotWithMenus = () => {
     )
 }
 
-export default PolishedScatterPlotWithMenus
+export default ScatterPlot

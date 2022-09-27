@@ -4,7 +4,8 @@ import * as d3 from 'd3'
 import ChartZero from './Components/ChartZero'
 import FootballChart from './Components/FootballChart'
 import DynamicChart from './Components/DynamicChart'
-import PolishedScatterPlotWithMenus from './PolishedScatterPlotWithMenus/PolishedScatterPlotWithMenus'
+import ScatterPlot from './ScatterPlot/ScatterPlot'
+import BarChart from './BarChart/BarChart'
 
 function App() {
 
@@ -28,7 +29,8 @@ function App() {
       <div id='gap'></div>
       <DynamicChart />
       <div id='space'></div> */}
-      <PolishedScatterPlotWithMenus />
+      {/* <ScatterPlot /> */}
+      <BarChart />
     </div>
   )
   
