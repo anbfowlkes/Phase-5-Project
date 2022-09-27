@@ -57,14 +57,14 @@ let BarChart = () => {
     //we're using a band scale which is useful for ordinal data
 
     const xValue = (d) => d.Team
-    const yValue = (d) => d.AssistedTackles
+    const yValue = (d) => d[yAttribute]
 
     // let xValArray = data.map(xValue)
     // xValArray = xValArray.sort()
 
     let sortedData = [...data]
     sortedData = sortedData.sort((a,b) => {
-        return (a.AssistedTackles < b.AssistedTackles ? 1 : -1)
+        return (a[yAttribute] < b[yAttribute] ? 1 : -1)
     })
     console.log(sortedData)
 
@@ -84,34 +84,7 @@ let BarChart = () => {
     const numFormatter = n => format('.2s')(n).replace('G','B')
 
     return (
-        <svg width={width} height={height} >
-
-            <g transform={`translate(${margin.left},${margin.top})`}>
-
-                <AxisBottom xScale={xScale} innerHeight={innerHeight} tickFormat={numFormatter} />
-
-                <AxisLeft yScale={yScale} innerHeight={innerHeight} tickFormat={numFormatter} />
-
-                <text 
-                className='axis-label'
-                x={innerWidth/2} 
-                y={innerHeight+55} 
-                textAnchor='middle'
-                >X Axis Label</text>
-                
-                <Marks 
-                    data={data} 
-                    xScale={xScale} 
-                    yScale={yScale} 
-                    xValue={xValue} 
-                    yValue={yValue} 
-                    tooltipFormat={numFormatter}
-                    innerHeight={innerHeight}
-                />
-
-                
-
-            </g>
+        <>
 
             <div className='menus-container'>
                 <div>
@@ -125,7 +98,44 @@ let BarChart = () => {
 
             </div>
 
-        </svg>
+            <svg width={width} height={height} >
+
+                <g transform={`translate(${margin.left},${margin.top})`}>
+
+                    <AxisBottom 
+                        yScale={yScale} 
+                        yValue={yValue} 
+                        xScale={xScale} 
+                        innerHeight={innerHeight}
+                        tickFormat={numFormatter}
+                        sortedData={sortedData}
+                    />
+
+                    <AxisLeft yScale={yScale} innerHeight={innerHeight} tickFormat={numFormatter} />
+
+                    <text 
+                    className='axis-label'
+                    x={innerWidth/2} 
+                    y={innerHeight+55} 
+                    textAnchor='middle'
+                    >X Axis Label</text>
+                    
+                    <Marks 
+                        sortedData={sortedData} 
+                        xScale={xScale} 
+                        yScale={yScale} 
+                        xValue={xValue} 
+                        yValue={yValue} 
+                        tooltipFormat={numFormatter}
+                        innerHeight={innerHeight}
+                    />
+
+                </g>
+
+            </svg>
+
+            
+        </>
     )
 }
 

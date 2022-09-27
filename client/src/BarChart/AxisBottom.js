@@ -1,14 +1,20 @@
-export const AxisBottom = ( { xScale } ) => {
+export const AxisBottom = ( { sortedData, xScale, yValue, yScale } ) => {
+
+    console.log(yScale(yValue))
+    let count = 0
+
     return (
         xScale.domain().map((tickValue => {
+            let labelHeight = sortedData[count][yValue]
+            console.log(labelHeight)
             return (
                 <g className='tick'>
                     <text 
                         key={tickValue}
-                        style={{textAnchor: 'end', width: '100px'}} 
-                        dy='.32em' 
+                        style={{textAnchor: 'end', fontSize: '10px', width: '100px'}} 
+                        // dy='.32em' 
                         x={xScale(tickValue) + xScale.bandwidth() / 2}
-                        y={550}
+                        y={500}
                         >
                             {tickValue}
                     </text>

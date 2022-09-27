@@ -1,16 +1,16 @@
-export const Marks = ( { data, xScale, yScale, xValue, yValue, tooltipFormat, innerHeight } ) => {
+export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight } ) => {
     return (
-        data.map((d) => {
+        sortedData.map((d) => {
             return (
-            <rect 
-                className='mark'
-                key={xValue(d)}
-                x={xScale(xValue(d))} 
-                y={yScale(yValue(d))}
-                width={xScale.bandwidth() / 2}
-                height={innerHeight - yScale(yValue(d))}  
-                >
-                    <title>{xValue(d)}</title>
+                <rect 
+                    className='mark'
+                    key={xValue(d)}
+                    x={xScale(xValue(d))} 
+                    y={yScale(yValue(d))}
+                    width={xScale.bandwidth() / 2}
+                    height={innerHeight - yScale(yValue(d))}  
+                    >
+                        <title>{xValue(d)}</title>
                 </rect>
                 )
         })
