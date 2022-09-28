@@ -109,6 +109,7 @@ let BarChart = () => {
                         innerHeight={innerHeight}
                         tickFormat={numFormatter}
                         sortedData={sortedData}
+                        innerWidth={innerWidth}
                     />
 
                     <AxisLeft yScale={yScale} innerHeight={innerHeight} tickFormat={numFormatter} />
