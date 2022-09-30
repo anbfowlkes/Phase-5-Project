@@ -1,14 +1,21 @@
 import { useState } from 'react'
-export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight } ) => {
+export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight, teamData } ) => {
 
     let count = 0
     let [tickValue, setTickValue] = useState(null)
+
+    let teams = [...teamData]
+    let c = 0
+
 
     return (
         sortedData.map((d) => {
             // let tickValue = xScale.domain()[count]
             // setTickValue(xScale.domain()[count])
+            let color = teams[count].PrimaryColor
+
             count++
+            
             return (
                 <>
                     {/* <text 
@@ -21,6 +28,7 @@ export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight
                             {tickValue}
                     </text> */}
                     <rect 
+                        style={{fill: `#${color}`}}
                         className='mark'
                         key={xValue(d)}
                         x={xScale(xValue(d))} 

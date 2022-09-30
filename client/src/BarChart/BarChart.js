@@ -12,7 +12,7 @@ import ReactDropdown from 'react-dropdown'
 // number 8
 let BarChart = () => {
 
-    let {data, columns} = useData()
+    let {data, columns, teamData} = useData()
 
     const initialYAttribute = 'AssistedTackles'
     let [yAttribute, setYAttribute] = useState(initialYAttribute)
@@ -144,6 +144,7 @@ let BarChart = () => {
                         yValue={yValue} 
                         tooltipFormat={numFormatter}
                         innerHeight={innerHeight}
+                        teamData={teamData}
                     />
 
                 </g>

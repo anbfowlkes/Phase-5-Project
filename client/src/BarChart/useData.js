@@ -8,6 +8,9 @@ export const useData = () => {
     let [data, setData] = useState(null)
     let [columns, setColumns] = useState(null)
 
+    let jsonUrl2 = 'http://localhost:2000/teams'
+    let [teamData, setTeamData] = useState(null)
+
     let getColumns = (data) => {
         let colsArray = []
         for (let col in data[0]) {
@@ -32,5 +35,11 @@ export const useData = () => {
         })
     }, [])
 
-    return {data: data, columns: columns}
+    useEffect(() => {
+        json(jsonUrl2).then(data => {
+            setTeamData(data)
+        })
+    },[])
+
+    return {data: data, columns: columns, teamData: teamData}
 }
