@@ -1,0 +1,2 @@
+class DeveloperProfile < ApplicationRecord
+end

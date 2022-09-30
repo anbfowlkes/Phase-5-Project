@@ -6,4 +6,8 @@ Rails.application.routes.draw do
 
   get '/teams', to: 'application#teams'
 
+  get '/profile-graphs', to: 'developerprofiles#graphs'
+
+  post '/profile-graphs', to: 'developerprofiles#addgraph'
+
 end
