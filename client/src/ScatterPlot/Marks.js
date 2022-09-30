@@ -35,7 +35,7 @@ const Marks = ( { data, teamData, xScale, yScale, xValue, yValue, circleRadius }
                 //     console.log(color)
                 // })
                 let color = teams[count].PrimaryColor
-                console.log(color)
+                // console.log(color)
                 count++
                 return (
                 <circle 

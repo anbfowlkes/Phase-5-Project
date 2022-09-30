@@ -14,7 +14,9 @@ let BarChart = ({ yAxis }) => {
 
     let {data, columns} = useData()
 
-    let [yAttribute, setYAttribute] = useState(yAxis)
+    // let [yAttribute, setYAttribute] = useState(yAxis)
+
+    let yAttribute = yAxis
 
     let width = 1200
     let height = 600
@@ -50,7 +52,7 @@ let BarChart = ({ yAxis }) => {
         }
     })
 
-    console.log('attributes: ', attributes)
+    // console.log('attributes: ', attributes)
 
     // the 'd' bellow represents one element (row) of the data
     //we're using a band scale which is useful for ordinal data
@@ -65,7 +67,7 @@ let BarChart = ({ yAxis }) => {
     sortedData = sortedData.sort((a,b) => {
         return (a[yAttribute] < b[yAttribute] ? 1 : -1)
     })
-    console.log(sortedData)
+    // console.log(sortedData)
 
     let xScale = scaleBand()
         .domain(sortedData.map(xValue))
@@ -78,7 +80,7 @@ let BarChart = ({ yAxis }) => {
         // .nice()
     
     // console.log(xScale.ticks())
-    console.log(yScale.domain())
+    // console.log(yScale.domain())
 
     const numFormatter = n => format('.2s')(n).replace('G','B')
 

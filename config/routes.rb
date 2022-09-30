@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
   post '/profile-graphs', to: 'developerprofiles#addgraph'
 
+  delete '/profile-graphs/:id', to: 'developerprofiles#destroy'
+
 end

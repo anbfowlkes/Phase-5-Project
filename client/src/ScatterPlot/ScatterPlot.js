@@ -136,6 +136,20 @@ let ScatterPlot = () => {
         cyArray.push((yValue(d)))
     })
 
+    let addToFavorites = async () => {
+        let req = fetch('http://localhost:2000/profile-graphs', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                charttype: 'scatterplot',
+                xaxis: xAttribute,
+                yaxis: yAttribute
+            })
+        })
+        let res = await req.json()
+        console.log(res)
+    }
+
 
     return (
         <>
@@ -247,6 +261,12 @@ let ScatterPlot = () => {
                     </div>
                 </div>
             </div>
+
+            <div>
+                <button onClick={addToFavorites}>Add To Favorites</button>
+            </div>
+
+            
         </>
     )
 }

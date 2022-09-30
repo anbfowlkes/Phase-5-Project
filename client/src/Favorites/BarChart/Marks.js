@@ -3,6 +3,7 @@ export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight
 
     let count = 0
     let [tickValue, setTickValue] = useState(null)
+    // let c = 0
 
     return (
         sortedData.map((d) => {

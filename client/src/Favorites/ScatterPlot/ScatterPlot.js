@@ -22,10 +22,13 @@ let ScatterPlot = ({ xAxis, yAxis }) => {
 
     // const initialXAttribute = 'AssistedTackles'
     
-    const [xAttribute, setXAttribute] = useState(xAxis)
+    // const [xAttribute, setXAttribute] = useState(xAxis)
     // const initialYAttribute = 'AssistedTackles'
 
-    const [yAttribute, setYAttribute] = useState(yAxis)
+    let xAttribute = xAxis
+    let yAttribute = yAxis
+    
+    // const [yAttribute, setYAttribute] = useState(yAxis)
 
     let [regCor, setRegCor] = useState(null)
     let [regSlope, setRegSlope] = useState(null)

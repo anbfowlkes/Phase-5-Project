@@ -9,10 +9,22 @@ class DeveloperprofilesController < ApplicationController
         render json: item
     end
 
+
+
+    def destroy
+        item = DeveloperProfile.find_by!(id: params[:id])
+        if item.destroy
+            render json: item
+        else
+            render json: {error: item.errors.full_messages}, status: 422
+        end
+    end
+
     private
 
     def graph_params
         params.permit(:charttype, :xaxis, :yaxis)
     end
+
 
 end

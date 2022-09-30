@@ -83,6 +83,21 @@ let BarChart = () => {
 
     const numFormatter = n => format('.2s')(n).replace('G','B')
 
+    let addToFavorites = async () => {
+        let req = fetch('http://localhost:2000/profile-graphs', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                charttype: 'barchart',
+                xaxis: 'none',
+                yaxis: yAttribute
+            })
+        })
+        let res = await req.json()
+        console.log(res)
+        alert('added to favorites')
+    }
+
     return (
         <>
 
@@ -135,6 +150,9 @@ let BarChart = () => {
 
             </svg>
 
+            <div>
+                <button onClick={addToFavorites}>Add To Favorites</button>
+            </div>
             
         </>
     )

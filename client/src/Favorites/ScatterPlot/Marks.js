@@ -23,6 +23,7 @@ const Marks = ( { data, teamData, xScale, yScale, xValue, yValue, circleRadius }
     // console.log('cy array: ', cyArray)
     let [index, setIndex] = useState(0)
     let count = 0
+    let c = 0
 
     return (
         <>
@@ -35,10 +36,11 @@ const Marks = ( { data, teamData, xScale, yScale, xValue, yValue, circleRadius }
                 //     console.log(color)
                 // })
                 let color = teams[count].PrimaryColor
-                console.log(color)
+                // console.log(color)
                 count++
                 return (
                 <circle 
+                    key={c++}
                     style={{fill: `#${color}`}}
                     className='mark'
                     cx={xScale(xValue(d))}

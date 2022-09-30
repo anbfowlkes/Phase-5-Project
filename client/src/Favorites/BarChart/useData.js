@@ -25,7 +25,7 @@ export const useData = () => {
             return d
         }
         json(jsonUrl, row).then(data => {
-            console.log(data)
+            // console.log(data)
             setData(data)
             setColumns(getColumns(data))
             // setData(data.slice(0,10))

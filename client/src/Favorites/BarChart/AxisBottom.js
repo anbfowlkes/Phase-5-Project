@@ -1,7 +1,8 @@
 export const AxisBottom = ( { innerWidth, sortedData, xScale, yValue, yScale } ) => {
 
-    console.log(yScale(yValue))
+    // console.log(yScale(yValue))
     let count = 0
+    let c = 0
 
     return (
 
@@ -12,6 +13,7 @@ export const AxisBottom = ( { innerWidth, sortedData, xScale, yValue, yScale } )
 
             return (
                     <text 
+                        key={c++}
                         style={{textAnchor: 'end', fontSize: '10px', width: '100px'}} 
                         // dy='.32em' 
                         x={xScale(tickValue) + xScale.bandwidth() / 2}
