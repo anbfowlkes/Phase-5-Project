@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_29_191139) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_30_155204) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_29_191139) do
     t.string "charttype"
     t.string "xaxis"
     t.string "yaxis"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "team_games", force: :cascade do |t|
+    t.string "team"
+    t.integer "week"
+    t.json "info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

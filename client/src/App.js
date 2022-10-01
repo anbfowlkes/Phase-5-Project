@@ -8,6 +8,7 @@ import FootballChart from './Components/FootballChart'
 import DynamicChart from './Components/DynamicChart'
 import ScatterPlot from './ScatterPlot/ScatterPlot'
 import BarChart from './BarChart/BarChart'
+import LineChart from './LineChart/LineChart'
 import Favorites from './Favorites/Favorites'
 
 
@@ -29,8 +30,9 @@ function App() {
             <Navbar  />
             <Routes > 
               {/* <Route path="/" element={ <LandingPage user={user}/>} /> */}
-              <Route path="/scatterplot" element={<ScatterPlot />} />
-              <Route path="/barchart" element={<BarChart />} />
+              <Route path='/scatterplot' element={<ScatterPlot />} />
+              <Route path='/barchart' element={<BarChart />} />
+              <Route path='/linechart' element={<LineChart />} />
               <Route path='/favorites' element={<Favorites />} />
 
               {/* <Route path='/contact_profile/:id' element={<ContactCard />}/>

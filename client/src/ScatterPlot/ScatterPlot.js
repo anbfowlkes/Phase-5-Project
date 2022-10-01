@@ -4,6 +4,7 @@ import { useData } from './useData'
 import { AxisBottom } from './AxisBottom'
 import { AxisLeft } from './AxisLeft'
 import Marks from './Marks'
+import Logos from './Logos'
 import './ScatterPlot.css'
 import Dropdown from './Dropdown'
 import Regression from './Regression'
@@ -212,6 +213,18 @@ let ScatterPlot = () => {
                             </text>
                             
                             <Marks 
+                                data={data}
+                                teamData={teamData}
+                                xScale={xScale} 
+                                yScale={yScale} 
+                                xValue={xValue}
+                                yValue={yValue} 
+                                tooltipFormat={xAxisTickFormatter}
+                                circleRadius={7}
+                                innerHeight={innerHeight}
+                            />
+
+                            <Logos 
                                 data={data}
                                 teamData={teamData}
                                 xScale={xScale} 

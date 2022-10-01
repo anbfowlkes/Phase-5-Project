@@ -1,0 +1,36 @@
+.tick line {
+    stroke: #C0C0BB;
+}
+
+.tick text {
+    fill: #635F5D;
+    font-family: 'Poppins'
+}
+
+.marks circle {
+    fill: #137B80;
+}
+
+.marks path {
+    /* stroke: #137B80; */
+    stroke-width: 5;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+.axis-label {
+    font-family: 'Poppins';
+    font-size: 2.5em;
+    fill: #635F5D
+}
+
+#checkbox-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.line-paths {
+    stroke-width:3px;
+}

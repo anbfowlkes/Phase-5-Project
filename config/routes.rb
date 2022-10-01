@@ -12,4 +12,12 @@ Rails.application.routes.draw do
 
   delete '/profile-graphs/:id', to: 'developerprofiles#destroy'
 
+  get '/new', to: 'application#new'
+
+  get '/all', to: 'application#all'
+
+  get '/week1', to: 'application#week1'
+
+  get '/teamgames', to: 'teamgames#show'
+
 end

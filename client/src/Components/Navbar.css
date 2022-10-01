@@ -1,0 +1,16 @@
+.nav-item {
+    list-style: none;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    column-gap: 7em;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3em;
+}
+
+a:link {
+    color: red;
+}
