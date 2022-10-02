@@ -31,9 +31,7 @@ export const useData = () => {
     
     useEffect(() => {
         let row = (d) => {
-            // d.temperature = parseFloat(d.temperature)
-            // d.timestamp = new Date(d.timestamp)
-            // this parses the data into a new format, '2015-03-20T21:00:00.000Z' becomes : 'Fri Mar 20 2015 17:00:00 GMT-0400 (Eastern Daylight Time)'
+            // d.OpponentTimeOfPossessionMinutes = d.OpponentTimeOfPossessionMinutes + d.OpponentTimeOfPossessionSeconds/60.0
             return d
         }
         json(jsonUrl, row).then(data => {

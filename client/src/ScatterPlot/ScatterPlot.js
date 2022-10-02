@@ -81,6 +81,7 @@ let ScatterPlot = () => {
         }
     })
 
+    console.log('attributes: ', attributes)
 
 
     const getLabel = (value) => {
@@ -122,14 +123,13 @@ let ScatterPlot = () => {
     let yScale = scaleLinear()
         .domain(extent(data, yValue))
         .range([innerHeight, 0])
+        .nice()
 
     const xAxisLabelOffset = 55
     const yAxisLabelOffset = 50
 
     // console.log('ticks console.log: ', xScale.ticks())
     // console.log('yScale domain console.log: ', yScale.domain())
-
-    const xAxisTickFormatter = n => format('.2s')(n).replace('G','B')
 
     // console.log(data.columns) // this console.logs all the columns of the data, which is what we want as the attributes in our menu dropdown
 
@@ -200,7 +200,6 @@ let ScatterPlot = () => {
                             <AxisBottom 
                                 xScale={xScale} 
                                 innerHeight={innerHeight} 
-                                tickFormat={xAxisTickFormatter} 
                                 tickOffset={20} 
                             />
 
@@ -234,7 +233,6 @@ let ScatterPlot = () => {
                                 yScale={yScale} 
                                 xValue={xValue}
                                 yValue={yValue} 
-                                tooltipFormat={xAxisTickFormatter}
                                 circleRadius={7}
                                 innerHeight={innerHeight}
                                 handleTeamClick={handleTeamClick}
@@ -245,7 +243,6 @@ let ScatterPlot = () => {
                                     yScale={yScale} 
                                     xValue={xValue}
                                     yValue={yValue} 
-                                    tooltipFormat={xAxisTickFormatter}
                                     circleRadius={7}
                                     innerHeight={innerHeight}
                                     handleTeamClick={handleTeamClick}

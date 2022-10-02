@@ -1,10 +1,13 @@
 import { useState, useCallback, useEffect } from 'react'
 import { csv, scaleLinear, scaleBand, max, extent } from 'd3'
+import * as d3 from 'd3'
 import { useData } from './useData'
 import { AxisBottom } from './AxisBottom'
 import { AxisLeft } from './AxisLeft'
 import { Marks } from './Marks'
+import Logos from './Logos'
 import Paths from './Paths'
+import Switch from './Switch'
 import './LineChart.css'
 import ReactDropdown from 'react-dropdown'
 
@@ -23,6 +26,14 @@ let LineChart = () => {
 
     let [selectedTeams, setSelectedTeams] = useState([])
 
+    let [logoToggle, setLogoToggle] = useState(true)
+
+    let [pathToggle, setPathToggle] = useState(true)
+
+    let [markToggle, setMarkToggle] = useState(true)
+
+    let [labelToggle, setLabelToggle] = useState(false)
+
     if (!data || !teamData || !columns) {
         return <pre>'Loading...'</pre>
     }
@@ -36,10 +47,12 @@ let LineChart = () => {
     let teamArray = []
 
     data.forEach((item) => {
-        if (item.team == 'ATL') {
-            teamArray.push(item)
-        }
+        teamArray.push(item)
     })
+
+    let yValArray = []
+
+
 
     console.log('teamArray: ', teamArray)
 
@@ -65,7 +78,17 @@ let LineChart = () => {
     let attributes = []
 
     columns.forEach((col) => {
-        if (col != 'TeamSeasonID' && col != 'TeamID' && col != 'Season' && col != 'Team' && col != 'Games' && col != 'TimeOfPossession' && col != 'OpponentTimeOfPossession' && col != 'SeasonType') {
+        if (col != 'TeamSeasonID'
+            && col != 'TeamID' 
+            && col != 'Season' 
+            && col != 'Team' 
+            && col != 'Games' 
+            && col != 'TimeOfPossessionSeconds' 
+            && col != 'OpponentTimeOfPossessionSeconds' 
+            && col != 'SeasonType'
+            && col != 'Date'
+            && col != 'DayOfWeek'
+            ) {
             attributes.push({ value: col, label: colDisplayer(col) })
         }
     })
@@ -83,6 +106,7 @@ let LineChart = () => {
     let yScale = scaleLinear()
         .domain(extent(teamArray, yValue))
         .range([innerHeight, 0])
+        // .tickFormat(d3.format('.0f'))
         .nice()
 
     const xAxisLabel = 'Weeks'
@@ -164,21 +188,9 @@ let LineChart = () => {
                     >
                         {yAxisLabel}
                     </text>
-                    
-                    <Marks 
-                        data={data} 
-                        xScale={xScale} 
-                        yScale={yScale} 
-                        xValue={xValue}
-                        yValue={yValue}
-                        teamArray={teamArray}
-                        tooltipFormat={xAxisTickFormatter}
-                        circleRadius={4}
-                        selectedTeams={selectedTeams}
-                        yAttribute={yAttribute}
-                    />
 
-                    <Paths
+                    {pathToggle ? 
+                        <Paths
                         data={data} 
                         xScale={xScale} 
                         yScale={yScale} 
@@ -190,11 +202,52 @@ let LineChart = () => {
                         selectedTeams={selectedTeams}
                         yAttribute={yAttribute}
                         teamData={teamData}
-                    />
+                        />
+                    : null}
+                    
+                    {markToggle ? 
+                    <>
+                        {logoToggle ? 
+                            <Marks 
+                            data={data} 
+                            xScale={xScale} 
+                            yScale={yScale} 
+                            xValue={xValue}
+                            yValue={yValue}
+                            teamArray={teamArray}
+                            tooltipFormat={xAxisTickFormatter}
+                            circleRadius={4}
+                            selectedTeams={selectedTeams}
+                            yAttribute={yAttribute}
+                        />
+                        : 
+                        <Logos 
+                            data={data}
+                            teamData={teamData}
+                            xScale={xScale} 
+                            yScale={yScale} 
+                            xValue={xValue}
+                            yValue={yValue} 
+                            selectedTeams={selectedTeams}
+                            // handleTeamClick={handleTeamClick}
+                        />
+                        }
+                        
+
+                        
+                    </>
+                    : null}
 
                 </g>
 
             </svg>
+
+            <div id='switches-div'>
+                <Switch toggle={logoToggle} setToggle={setLogoToggle} />
+                <Switch toggle={pathToggle} setToggle={setPathToggle} />
+                <Switch toggle={markToggle} setToggle={setMarkToggle} />
+                <Switch toggle={labelToggle} setToggle={setLabelToggle} />
+            </div>
 
             <div id='checkbox-div'>
                 <label>

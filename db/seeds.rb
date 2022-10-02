@@ -7,7 +7,7 @@ TeamGame.destroy_all
 
 
 
-17.times do |i|
+18.times do |i|
 
         week = i + 1
 

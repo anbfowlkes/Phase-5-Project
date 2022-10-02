@@ -32,5 +32,9 @@
 }
 
 .line-paths {
-    stroke-width:3px;
+    stroke-width: 3px;
+}
+
+.line-logos {
+    z-index: 2;
 }

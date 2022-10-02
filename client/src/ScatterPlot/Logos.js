@@ -1,23 +1,12 @@
 import { useState } from 'react'
 
 const Logos = ( { data, teamData, xScale, yScale, xValue, yValue, handleTeamClick } ) => {
-    
-    let cxArray = []
-
-    let cyArray = []
 
     // console.log(teamData[data[0].TeamID - 1])
     // console.log(data)
 
     let teams = [...teamData]
     // console.log(teams[0].PrimaryColor)
-
-    data.map((d) => {
-        // cxArray.push(xScale(xValue(d)))
-        // cyArray.push(yScale(yValue(d)))
-        cxArray.push((xValue(d)))
-        cyArray.push((yValue(d)))
-    })
 
     // console.log('cx array: ', cxArray)
     // console.log('cy array: ', cyArray)
@@ -34,7 +23,6 @@ const Logos = ( { data, teamData, xScale, yScale, xValue, yValue, handleTeamClic
                 //     }
                 //     console.log(color)
                 // })
-                let color = teams[count].PrimaryColor
                 let logoUrl = teams[count].WikipediaLogoUrl
                 // console.log(color)
                 count++
@@ -62,5 +50,6 @@ const Logos = ( { data, teamData, xScale, yScale, xValue, yValue, handleTeamClic
         </>
     )
 }
+
 
 export default Logos

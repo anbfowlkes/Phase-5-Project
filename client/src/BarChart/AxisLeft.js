@@ -7,7 +7,11 @@ export const AxisLeft = ( {yScale, innerHeight, tickFormat} ) => {
                     return (
                     <g className='tick' key={tickValue} >
                         {/* <line y2={innerHeight} /> */}
-                        <text style={{textAnchor: 'middle'}} x={-40} y={yScale(tickValue)}>{tickFormat(tickValue)}</text>
+                        {parseInt(tickValue) == tickValue ? 
+                        <text style={{textAnchor: 'middle'}} x={-40} y={yScale(tickValue)}>{parseInt(tickFormat(tickValue))}</text>
+                        : null
+                        }
+                        
                     </g>
                     )
                 }
