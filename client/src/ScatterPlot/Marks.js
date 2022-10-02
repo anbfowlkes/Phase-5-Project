@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Marks = ( { data, teamData, xScale, yScale, xValue, yValue, circleRadius } ) => {
+const Marks = ( { data, teamData, xScale, yScale, xValue, yValue, circleRadius, handleTeamClick } ) => {
     
     let cxArray = []
 
@@ -39,11 +39,13 @@ const Marks = ( { data, teamData, xScale, yScale, xValue, yValue, circleRadius }
                 count++
                 return (
                 <circle 
+                    onClick={handleTeamClick}
                     style={{fill: `#${color}`}}
                     className='mark'
                     cx={xScale(xValue(d))}
                     cy={yScale(yValue(d))}
                     r={circleRadius}
+                    id={d.Team}
                 >
                     <title>{d.Team}</title>
                 </circle>

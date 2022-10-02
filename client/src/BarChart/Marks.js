@@ -1,5 +1,5 @@
 import { useState } from 'react'
-export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight, teamData } ) => {
+export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight, teamData, setTeamDisplayed } ) => {
 
     let count = 0
     let [tickValue, setTickValue] = useState(null)
@@ -7,12 +7,17 @@ export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight
     let teams = [...teamData]
     let c = 0
 
+    let handleTeamClick = (e) => {
+        console.log('id ', e.target.id)
+        setTeamDisplayed(e.target.id)
+    }
 
     return (
         sortedData.map((d) => {
             // let tickValue = xScale.domain()[count]
             // setTickValue(xScale.domain()[count])
-            let color = teams[count].PrimaryColor
+            let team = teams.find((item) => item.Key == d.Team)
+            let color = team.PrimaryColor
 
             count++
             
@@ -28,6 +33,8 @@ export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight
                             {tickValue}
                     </text> */}
                     <rect 
+                        id={d.Team}
+                        onClick={handleTeamClick}
                         style={{fill: `#${color}`}}
                         className='mark'
                         key={xValue(d)}

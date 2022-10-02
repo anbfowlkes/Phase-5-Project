@@ -9,6 +9,7 @@ import './ScatterPlot.css'
 import Dropdown from './Dropdown'
 import Regression from './Regression'
 import RegressionDisplay from './RegressionDisplay'
+import InfoDisplay from './InfoDisplay'
 import ReactDropdown from 'react-dropdown'
 import Switch from './Switch'
 // import ToggleButton from 'react-toggle-button'
@@ -31,6 +32,12 @@ let ScatterPlot = () => {
     let [regInt, setRegInt] = useState(null)
 
     let [regToggle, setRegToggle] = useState(false)
+
+    let [logoToggle, setLogoToggle] = useState(true)
+
+    let [infoToggle, setInfoToggle] = useState(false)
+
+    let [teamDisplayed, setTeamDisplayed] = useState(null)
 
     if (!data || !teamData) {
         return <pre>'Loading...'</pre>
@@ -151,6 +158,14 @@ let ScatterPlot = () => {
         console.log(res)
     }
 
+    let handleTeamClick = (e) => {
+        // console.log(e)
+        // console.log(e.target.href.animVal)
+        console.log(e.target)
+        console.log(e.target.id)
+        setTeamDisplayed(e.target.id)
+    }
+
 
     return (
         <>
@@ -212,7 +227,7 @@ let ScatterPlot = () => {
                                 {yAxisLabel}
                             </text>
                             
-                            <Marks 
+                            {logoToggle ? <Marks 
                                 data={data}
                                 teamData={teamData}
                                 xScale={xScale} 
@@ -222,19 +237,19 @@ let ScatterPlot = () => {
                                 tooltipFormat={xAxisTickFormatter}
                                 circleRadius={7}
                                 innerHeight={innerHeight}
-                            />
-
-                            <Logos 
-                                data={data}
-                                teamData={teamData}
-                                xScale={xScale} 
-                                yScale={yScale} 
-                                xValue={xValue}
-                                yValue={yValue} 
-                                tooltipFormat={xAxisTickFormatter}
-                                circleRadius={7}
-                                innerHeight={innerHeight}
-                            />
+                                handleTeamClick={handleTeamClick}
+                            /> : <Logos 
+                                    data={data}
+                                    teamData={teamData}
+                                    xScale={xScale} 
+                                    yScale={yScale} 
+                                    xValue={xValue}
+                                    yValue={yValue} 
+                                    tooltipFormat={xAxisTickFormatter}
+                                    circleRadius={7}
+                                    innerHeight={innerHeight}
+                                    handleTeamClick={handleTeamClick}
+                            />}
 
                             {regToggle ? 
                                 <Regression 
@@ -259,7 +274,7 @@ let ScatterPlot = () => {
                 <div className='regressionBox'>
                     <div className='regHead'>
                         <h3>{'View Regression Analysis'}</h3>
-                        <Switch regToggle={regToggle} setRegToggle={setRegToggle} />
+                        <Switch toggle={regToggle} setToggle={setRegToggle} />
                     </div>
                     <div className='regDispDiv'>
                         {regToggle ? 
@@ -277,6 +292,23 @@ let ScatterPlot = () => {
 
             <div>
                 <button onClick={addToFavorites}>Add To Favorites</button>
+            </div>
+
+            <div>
+                <Switch toggle={logoToggle} setToggle={setLogoToggle} />
+            </div>
+
+            <div className='scatterplot-info-display'>
+                <Switch toggle={infoToggle} setToggle={setInfoToggle} />
+                {infoToggle ? 
+                    <InfoDisplay 
+                        xAttribute={xAttribute}
+                        yAttribute={yAttribute}
+                        data={data}
+                        teamDisplayed={teamDisplayed}
+                        colDisplayer={colDisplayer}
+                        teamData={teamData}
+                    /> : null}
             </div>
 
             

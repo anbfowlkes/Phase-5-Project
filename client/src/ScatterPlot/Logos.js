@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Logos = ( { data, teamData, xScale, yScale, xValue, yValue, circleRadius } ) => {
+const Logos = ( { data, teamData, xScale, yScale, xValue, yValue, handleTeamClick } ) => {
     
     let cxArray = []
 
@@ -44,12 +44,14 @@ const Logos = ( { data, teamData, xScale, yScale, xValue, yValue, circleRadius }
                 
                     <image 
                         // href='https://upload.wikimedia.org/wikipedia/en/7/77/Buffalo_Bills_logo.svg'
+                        onClick={handleTeamClick}
                         href={logoUrl}
                         // className='mark'
                         transform={`translate(${-15} ${-10})`}
                         x={xScale(xValue(d))}
                         y={yScale(yValue(d))}
                         width={30}
+                        id={d.Team}
                         // r={circleRadius}
                     >
                         <title>{d.Team}</title>

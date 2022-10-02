@@ -133,3 +133,16 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(26px);
 }
+
+.scatterplot-info-display {
+    width: 500px;
+    height: 500px;
+    border: solid black;
+}
+
+.scatterplot-inner-display {
+    width: 500px;
+    height: 500px;
+    border: solid black;
+    color: white;
+}

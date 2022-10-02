@@ -43,6 +43,14 @@ let Paths = ( { data, teamData, selectedTeams, yAttribute, xScale, yScale, xValu
     return(
         <>
              {storageArray.map((arr) => {
+                let thisTeam = arr[0].team
+                let teamColor
+                console.log('thisTeam: ', thisTeam)
+                teamData.forEach((teamInfo) => {
+                    if (teamInfo.Key == thisTeam) {
+                        teamColor = teamInfo.PrimaryColor
+                    }
+                })
                 let color = teams[count].PrimaryColor
                 console.log('color: ', color)
                 count++
@@ -50,7 +58,7 @@ let Paths = ( { data, teamData, selectedTeams, yAttribute, xScale, yScale, xValu
                     <path 
                         className='line-paths'
                         fill='none'
-                        stroke={`#${color}`}
+                        stroke={`#${teamColor}`}
                         d={line()
                             .x(d=>xScale(d.week))
                             .y(d=>yScale(myY(d)))

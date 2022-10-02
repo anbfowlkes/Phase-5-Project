@@ -6,6 +6,8 @@ import { AxisLeft } from './AxisLeft'
 import { Marks } from './Marks'
 import './BarChart.css'
 import Dropdown from './Dropdown'
+import InfoDisplay from './InfoDisplay'
+import Switch from './Switch'
 import ReactDropdown from 'react-dropdown'
 
 
@@ -16,6 +18,10 @@ let BarChart = () => {
 
     const initialYAttribute = 'AssistedTackles'
     let [yAttribute, setYAttribute] = useState(initialYAttribute)
+
+    let [infoToggle, setInfoToggle] = useState(false)
+
+    let [teamDisplayed, setTeamDisplayed] = useState(null)
 
     let width = 1200
     let height = 600
@@ -145,6 +151,7 @@ let BarChart = () => {
                         tooltipFormat={numFormatter}
                         innerHeight={innerHeight}
                         teamData={teamData}
+                        setTeamDisplayed={setTeamDisplayed}
                     />
 
                 </g>
@@ -153,6 +160,22 @@ let BarChart = () => {
 
             <div>
                 <button onClick={addToFavorites}>Add To Favorites</button>
+            </div>
+
+            
+
+
+
+            <div className='scatterplot-info-display'>
+                <Switch toggle={infoToggle} setToggle={setInfoToggle} />
+                {infoToggle ? 
+                    <InfoDisplay 
+                        yAttribute={yAttribute}
+                        data={data}
+                        teamDisplayed={teamDisplayed}
+                        colDisplayer={colDisplayer}
+                        teamData={teamData}
+                    /> : null}
             </div>
             
         </>
