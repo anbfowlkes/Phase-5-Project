@@ -250,166 +250,200 @@ let LineChart = () => {
             </div>
 
             <div id='checkbox-div'>
-                <label>
-                    <input type='checkbox' value={'ARI'} onChange={handleCheck} />
-                    {'Arizona Cardinals'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'ATL'} onChange={handleCheck} />
-                    {'Atlanta Falcons'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'BUF'} onChange={handleCheck} />
-                    {'Buffalo Bills'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'BAL'} onChange={handleCheck} />
-                    {'Balitmore Ravens'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'CAR'} onChange={handleCheck} />
-                    {'Carolina Panthers'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'CIN'} onChange={handleCheck} />
-                    {'Cincinnati Bengals'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'CLE'} onChange={handleCheck} />
-                    {'Cleveland Browns'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'CHI'} onChange={handleCheck} />
-                    {'Chicago Bears'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'DAL'} onChange={handleCheck} />
-                    {'Dallas Cowboys'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'DEN'} onChange={handleCheck} />
-                    {'Denver Broncos'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'DET'} onChange={handleCheck} />
-                    {'Detroit Lions'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'GB'} onChange={handleCheck} />
-                    {'Green Bay Packers'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'HOU'} onChange={handleCheck} />
-                    {'Houston Texans'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'IND'} onChange={handleCheck} />
-                    {'Indianapolis Colts'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'KC'} onChange={handleCheck} />
-                    {'Kansas City Chiefs'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'LV'} onChange={handleCheck} />
-                    {'Las Vegas Raiders'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'LAC'} onChange={handleCheck} />
-                    {'Los Angeles Chargers'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'LAR'} onChange={handleCheck} />
-                    {'Los Angeles Rams'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'JAX'} onChange={handleCheck} />
-                    {'Jacksonville Jaguars'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'MIA'} onChange={handleCheck} />
-                    {'Miami Dolphins'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'MIN'} onChange={handleCheck} />
-                    {'Minnesota Vikings'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'NE'} onChange={handleCheck} />
-                    {'New England Patriots'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'NO'} onChange={handleCheck} />
-                    {'New Orleans Saints'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'NYG'} onChange={handleCheck} />
-                    {'New York Giants'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'NYJ'} onChange={handleCheck} />
-                    {'New York Jets'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'PHI'} onChange={handleCheck} />
-                    {'Philadelphia Eagles'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'SF'} onChange={handleCheck} />
-                    {'San Francisco 49ers'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'SEA'} onChange={handleCheck} />
-                    {'Seattle Seahawks'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'PIT'} onChange={handleCheck} />
-                    {'Pittsburg Steelers'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'TB'} onChange={handleCheck} />
-                    {'Tampa Bay Buccanneers'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'TEN'} onChange={handleCheck} />
-                    {'Tennessee Titans'}
-                </label>
-                {/* ----------- */}
-                <label>
-                    <input type='checkbox' value={'WAS'} onChange={handleCheck} />
-                    {'Washington Redskins'}
-                </label>
-                {/* ----------- */}
+                <div className='division-div'>
+                    <label>
+                        <input type='checkbox' value={'BUF'} onChange={handleCheck} />
+                        {'Buffalo Bills'}
+                    </label>
+
+                    <label>
+                        <input type='checkbox' value={'NE'} onChange={handleCheck} />
+                        {'New England Patriots'}
+                    </label>
+
+                    <label>
+                        <input type='checkbox' value={'NYJ'} onChange={handleCheck} />
+                        {'New York Jets'}
+                    </label>
+
+                    <label>
+                        <input type='checkbox' value={'MIA'} onChange={handleCheck} />
+                        {'Miami Dolphins'}
+                    </label>
+                </div>
+
+
+                <div className='division-div'>
+                    <label>
+                        <input type='checkbox' value={'BAL'} onChange={handleCheck} />
+                        {'Balitmore Ravens'}
+                    </label>
+
+                    <label>
+                        <input type='checkbox' value={'CIN'} onChange={handleCheck} />
+                        {'Cincinnati Bengals'}
+                    </label>
+
+                    <label>
+                        <input type='checkbox' value={'CLE'} onChange={handleCheck} />
+                        {'Cleveland Browns'}
+                    </label>
+
+                    <label>
+                        <input type='checkbox' value={'PIT'} onChange={handleCheck} />
+                        {'Pittsburg Steelers'}
+                    </label>
+                </div>
+
+
+
+
+
+                <div className='division-div'>
+                    <label>
+                        <input type='checkbox' value={'HOU'} onChange={handleCheck} />
+                        {'Houston Texans'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'IND'} onChange={handleCheck} />
+                        {'Indianapolis Colts'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'JAX'} onChange={handleCheck} />
+                        {'Jacksonville Jaguars'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'TEN'} onChange={handleCheck} />
+                        {'Tennessee Titans'}
+                    </label>
+                </div>
+
+
+
+                <div className='division-div'>
+
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'DEN'} onChange={handleCheck} />
+                        {'Denver Broncos'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'KC'} onChange={handleCheck} />
+                        {'Kansas City Chiefs'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'LV'} onChange={handleCheck} />
+                        {'Las Vegas Raiders'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'LAC'} onChange={handleCheck} />
+                        {'Los Angeles Chargers'}
+                    </label>
+                </div>
+
+
+
+                <div className='division-div'>
+                    <label>
+                        <input type='checkbox' value={'DAL'} onChange={handleCheck} />
+                        {'Dallas Cowboys'}
+                    </label> 
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'NYG'} onChange={handleCheck} />
+                        {'New York Giants'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'PHI'} onChange={handleCheck} />
+                        {'Philadelphia Eagles'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'WAS'} onChange={handleCheck} />
+                        {'Washington Commanders'}
+                    </label>    
+                </div>
+                
+                <div className='division-div'>
+
+                
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'CHI'} onChange={handleCheck} />
+                        {'Chicago Bears'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'DET'} onChange={handleCheck} />
+                        {'Detroit Lions'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'GB'} onChange={handleCheck} />
+                        {'Green Bay Packers'}
+                    </label>
+                    <label>
+                        <input type='checkbox' value={'MIN'} onChange={handleCheck} />
+                        {'Minnesota Vikings'}
+                    </label>
+                </div>
+
+
+
+
+
+                <div className='division-div'>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'ATL'} onChange={handleCheck} />
+                        {'Atlanta Falcons'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'CAR'} onChange={handleCheck} />
+                        {'Carolina Panthers'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'NO'} onChange={handleCheck} />
+                        {'New Orleans Saints'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'TB'} onChange={handleCheck} />
+                        {'Tampa Bay Buccanneers'}
+                    </label>
+                </div>
+                
+                
+                <div className='division-div'>
+                    <label>
+                        <input type='checkbox' value={'ARI'} onChange={handleCheck} />
+                        {'Arizona Cardinals'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'LAR'} onChange={handleCheck} />
+                        {'Los Angeles Rams'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'SF'} onChange={handleCheck} />
+                        {'San Francisco 49ers'}
+                    </label>
+                    {/* ----------- */}
+                    <label>
+                        <input type='checkbox' value={'SEA'} onChange={handleCheck} />
+                        {'Seattle Seahawks'}
+                    </label>
+                </div>
             </div>
         </>
     )

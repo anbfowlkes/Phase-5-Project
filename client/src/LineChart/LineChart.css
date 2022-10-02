@@ -26,9 +26,10 @@
 
 #checkbox-div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     text-align: center;
+    flex-wrap: wrap;
 }
 
 .line-paths {
@@ -37,4 +38,13 @@
 
 .line-logos {
     z-index: 2;
+}
+
+.division-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 24%;
+    margin-bottom: 5em;
 }
