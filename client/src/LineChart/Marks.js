@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { line, curveNatural } from 'd3'
-export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue, yValue, teamArray, circleRadius } ) => {
+export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue, yValue, teamData, circleRadius } ) => {
     
 
 
@@ -56,7 +56,16 @@ export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue
             <g className='marks'>
                 {console.log('storage: ', storageArray)}
                 {storageArray.map((arr) => {
+                    console.log('arr: ', arr)
+                    let color
+                    teamData.forEach((teamObj) => {
+                        if (teamObj.Key == arr[0].team) {
+                            color = teamObj.PrimaryColor
+                        }
+                    })
                     
+                    console.log('color: ', color)
+                    console.log('teamData: ', teamData)
                     return (
 
                         // <path 
@@ -68,40 +77,41 @@ export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue
                         //         .curve(curveNatural)(teamArray)} 
                         //     />
                     
-                    arr.map((d) => {
-                        // console.log('d: ', d)
-                        // console.log('yAttribute: ', yAttribute)
-                        // console.log('myY(d): ', myY(d))
-                        // <path 
-                        //     fill='none'
-                        //     stroke='black'
-                        //     d={line()
-                        //         .x(d=>xScale(xValue(d)))
-                        //         .y(d=>yScale(yValue(d)))
-                        //         .curve(curveNatural)(teamArray)} 
-                        // />
-                        
-                            return (
-                                <>
+                        arr.map((d) => {
+                            // console.log('d: ', d)
+                            // console.log('yAttribute: ', yAttribute)
+                            // console.log('myY(d): ', myY(d))
+                            // <path 
+                            //     fill='none'
+                            //     stroke='black'
+                            //     d={line()
+                            //         .x(d=>xScale(xValue(d)))
+                            //         .y(d=>yScale(yValue(d)))
+                            //         .curve(curveNatural)(teamArray)} 
+                            // />
+                            
+                                return (
+                                    <>
 
-                                
-                                    {/* <path 
-                                        fill='black'
-                                        stroke='black'
-                                        d={line()
-                                            .x(d=>xScale(d.week))
-                                            .y(d=>yScale(myY(d)))
-                                            .curve(curveNatural)(arr)} 
-                                        /> */}
-                                    <circle
-                                        cx={xScale(d.week)}
-                                        cy={yScale(myY(d))} 
-                                        r={circleRadius}
-                                    >
-                                        {/* <title>{xValue(d)}</title> */}
-                                    </circle>
-                                </>
-                            )
+                                    
+                                        {/* <path 
+                                            fill='black'
+                                            stroke='black'
+                                            d={line()
+                                                .x(d=>xScale(d.week))
+                                                .y(d=>yScale(myY(d)))
+                                                .curve(curveNatural)(arr)} 
+                                            /> */}
+                                        <circle
+                                            style={{fill: `#${color}`}}
+                                            cx={xScale(d.week)}
+                                            cy={yScale(myY(d))} 
+                                            r={circleRadius}
+                                        >
+                                            {/* <title>{xValue(d)}</title> */}
+                                        </circle>
+                                    </>
+                                )
                         
                     }))
                 })}

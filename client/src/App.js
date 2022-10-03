@@ -30,9 +30,9 @@ function App() {
             <Navbar  />
             <Routes > 
               {/* <Route path="/" element={ <LandingPage user={user}/>} /> */}
-              <Route path='/scatterplot' element={<ScatterPlot />} />
-              <Route path='/barchart' element={<BarChart />} />
-              <Route path='/linechart' element={<LineChart />} />
+              <Route path='/scatterplot' element={<ScatterPlot inFavorites={false} />} />
+              <Route path='/barchart' element={<BarChart inFavorites={false} />} />
+              <Route path='/linechart' element={<LineChart inFavorites={false} />} />
               <Route path='/favorites' element={<Favorites />} />
 
               {/* <Route path='/contact_profile/:id' element={<ContactCard />}/>

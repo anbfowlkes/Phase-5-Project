@@ -16,7 +16,7 @@ let LineChart = () => {
 
     let { data, columns, teamData } = useData()
 
-    let width = 960
+    let width = 1500
     let height = 600
     let margin = { top: 40, right: 20, bottom: 80, left: 300 }
     let innerHeight = height - (margin.top + margin.bottom)
@@ -155,60 +155,43 @@ let LineChart = () => {
                 </div>
             </div>
 
-            <svg width={width} height={height} >
+            <div className='line-graph-and-controllers'>
+                <svg width={width} height={height} >
 
-                <g transform={`translate(${margin.left},${margin.top})`}>
+                    <g transform={`translate(${margin.left},${margin.top})`}>
 
-                    <AxisBottom 
-                        xScale={xScale} 
-                        innerHeight={innerHeight} 
-                        tickFormat={xAxisTickFormatter} 
-                        tickOffset={20} 
-                    />
-
-                    <AxisLeft 
-                        yScale={yScale} 
-                        innerWidth={innerWidth} 
-                        tickOffset={7} 
-                    />
-
-                    <text 
-                        className='axis-label'
-                        x={innerWidth/2} 
-                        y={innerHeight + xAxisLabelOffset} 
-                        textAnchor='middle'
-                    >
-                        {xAxisLabel}
-                    </text>
-
-                    <text 
-                        className='axis-label'
-                        textAnchor='middle'
-                        transform={`translate(${-yAxisLabelOffset}, ${innerHeight/2}) rotate(-90)`}     
-                    >
-                        {yAxisLabel}
-                    </text>
-
-                    {pathToggle ? 
-                        <Paths
-                        data={data} 
-                        xScale={xScale} 
-                        yScale={yScale} 
-                        xValue={xValue}
-                        yValue={yValue}
-                        teamArray={teamArray}
-                        tooltipFormat={xAxisTickFormatter}
-                        circleRadius={4}
-                        selectedTeams={selectedTeams}
-                        yAttribute={yAttribute}
-                        teamData={teamData}
+                        <AxisBottom 
+                            xScale={xScale} 
+                            innerHeight={innerHeight} 
+                            tickFormat={xAxisTickFormatter} 
+                            tickOffset={20} 
                         />
-                    : null}
-                    
-                    {markToggle ? 
-                    <>
-                        {logoToggle ? 
-                            <Marks 
+
+                        <AxisLeft 
+                            yScale={yScale} 
+                            innerWidth={innerWidth} 
+                            tickOffset={7} 
+                        />
+
+                        <text 
+                            className='axis-label'
+                            x={innerWidth/2} 
+                            y={innerHeight + xAxisLabelOffset} 
+                            textAnchor='middle'
+                        >
+                            {xAxisLabel}
+                        </text>
+
+                        <text 
+                            className='axis-label'
+                            textAnchor='middle'
+                            transform={`translate(${-yAxisLabelOffset}, ${innerHeight/2}) rotate(-90)`}     
+                        >
+                            {yAxisLabel}
+                        </text>
+
+                        {pathToggle ? 
+                            <Paths
                             data={data} 
                             xScale={xScale} 
                             yScale={yScale} 
@@ -219,34 +202,67 @@ let LineChart = () => {
                             circleRadius={4}
                             selectedTeams={selectedTeams}
                             yAttribute={yAttribute}
-                        />
-                        : 
-                        <Logos 
-                            data={data}
                             teamData={teamData}
-                            xScale={xScale} 
-                            yScale={yScale} 
-                            xValue={xValue}
-                            yValue={yValue} 
-                            selectedTeams={selectedTeams}
-                            // handleTeamClick={handleTeamClick}
-                        />
-                        }
+                            />
+                        : null}
                         
+                        {markToggle ? 
+                        <>
+                            {logoToggle ? 
+                                <Marks 
+                                data={data} 
+                                xScale={xScale} 
+                                yScale={yScale} 
+                                xValue={xValue}
+                                yValue={yValue}
+                                teamArray={teamArray}
+                                tooltipFormat={xAxisTickFormatter}
+                                circleRadius={4}
+                                selectedTeams={selectedTeams}
+                                yAttribute={yAttribute}
+                                teamData={teamData}
+                            />
+                            : 
+                            <Logos 
+                                data={data}
+                                teamData={teamData}
+                                xScale={xScale} 
+                                yScale={yScale} 
+                                xValue={xValue}
+                                yValue={yValue} 
+                                selectedTeams={selectedTeams}
+                                // handleTeamClick={handleTeamClick}
+                            />
+                            }
+                            
 
-                        
-                    </>
-                    : null}
+                            
+                        </>
+                        : null}
 
-                </g>
+                    </g>
 
-            </svg>
+                </svg>
 
-            <div id='switches-div'>
-                <Switch toggle={logoToggle} setToggle={setLogoToggle} />
-                <Switch toggle={pathToggle} setToggle={setPathToggle} />
-                <Switch toggle={markToggle} setToggle={setMarkToggle} />
-                <Switch toggle={labelToggle} setToggle={setLabelToggle} />
+                <div id='line-switches-div'>
+                    <div className='controller'>
+                        <h3>{'Show Logos'}</h3>
+                        <Switch toggle={logoToggle} setToggle={setLogoToggle} />
+                    </div>
+                    <div className='controller'>
+                        <h3>{'Line Only'}</h3>
+                        <Switch toggle={markToggle} setToggle={setMarkToggle} />
+                    </div>
+                    <div className='controller'>
+                        <h3>{'No Line'}</h3>
+                        <Switch toggle={pathToggle} setToggle={setPathToggle} />
+                    </div>
+                    {/* <div className='controller'>
+                        <h3>{'Show Labels'}</h3>
+                        <Switch toggle={labelToggle} setToggle={setLabelToggle} />
+                    </div> */}
+                    
+                </div>
             </div>
 
             <div id='checkbox-div'>

@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
-import BarChart from './BarChart/BarChart'
-import ScatterPlot from './ScatterPlot/ScatterPlot'
+// import BarChart from './BarChart/BarChart'
+// import ScatterPlot from './ScatterPlot/ScatterPlot'
+import BarChart from '../BarChart/BarChart'
+import ScatterPlot from '../ScatterPlot/ScatterPlot'
+
 import './Favorites.css'
 
 let Favorites = () => {
@@ -83,15 +86,17 @@ let Favorites = () => {
         if (info[count-1].charttype == 'scatterplot') {
             return (
                 <ScatterPlot 
-                    xAxis={xAxis}
-                    yAxis={yAxis}
+                    inFavorites={true}
+                    xAxisFav={xAxis}
+                    yAxisFav={yAxis}
                     />
                 )
         } else if (info[count-1].charttype == 'barchart') {
             return (
                 
                 <BarChart 
-                    yAxis={yAxis}
+                    inFavorites={true}
+                    yAxisFav={yAxis}
                 />
                 )
         }

@@ -23,14 +23,14 @@ let BarChart = () => {
 
     let [teamDisplayed, setTeamDisplayed] = useState(null)
 
-    let width = 1200
-    let height = 600
+    let width = (1.2) * 1200
+    let height = (1.2) * 600
     let margin = { top: 40, right: 20, bottom: 80, left: 200 }
     let innerHeight = height - (margin.top + margin.bottom)
     let innerWidth = width - (margin.left + margin.right)
 
 
-    if (!data) {
+    if (!data || !columns || !teamData) {
         return <pre>'Loading...'</pre>
     }
 

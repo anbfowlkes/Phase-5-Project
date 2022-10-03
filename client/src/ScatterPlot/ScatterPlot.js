@@ -16,15 +16,25 @@ import Switch from './Switch'
 
 
 // number 9
-let ScatterPlot = () => {
+let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
 
     // let allData = useData()
 
     let {data, columns, teamData} = useData()
 
-    const initialXAttribute = 'AssistedTackles'
+    let initialXAttribute
+    if (xAxisFav) {
+        initialXAttribute = xAxisFav
+    } else {
+        initialXAttribute = 'AssistedTackles'
+    }
+    let initialYAttribute
+    if (yAxisFav) {
+        initialYAttribute = yAxisFav
+    } else {
+        initialYAttribute = 'AssistedTackles'
+    }
     const [xAttribute, setXAttribute] = useState(initialXAttribute)
-    const initialYAttribute = 'AssistedTackles'
     const [yAttribute, setYAttribute] = useState(initialYAttribute)
 
     let [regCor, setRegCor] = useState(null)
@@ -43,9 +53,9 @@ let ScatterPlot = () => {
         return <pre>'Loading...'</pre>
     }
 
-    let width = 960
+    let width = (1.2) * 960
     let menuHeight = 60
-    let height = 600 - 60
+    let height = (1.2) * (600 - 60)
     let margin = { top: 40, right: 20, bottom: 80, left: 300 }
     let innerHeight = height - (margin.top + margin.bottom)
     let innerWidth = width - (margin.left + margin.right)
@@ -172,6 +182,9 @@ let ScatterPlot = () => {
             <div className='scatterPlotDiv'>
                 <div className='menuAndScatterPlot'>
 
+
+                    {inFavorites ? 
+                    null :
                     <div className='menus-container'>
                         <div>
                             <span className='dropdown-label'>X:</span>
@@ -190,8 +203,10 @@ let ScatterPlot = () => {
                                 onChange={({ value }) => setYAttribute(value)}
                             />  
                         </div>
-                      
+                    
                     </div>
+                    }
+                    
 
                     <svg width={width} height={height} >
 
