@@ -10,6 +10,7 @@ import Dropdown from './Dropdown'
 import Regression from './Regression'
 import RegressionDisplay from './RegressionDisplay'
 import InfoDisplay from './InfoDisplay'
+import Averages from './Averages'
 import ReactDropdown from 'react-dropdown'
 import Switch from './Switch'
 // import ToggleButton from 'react-toggle-button'
@@ -275,6 +276,15 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                                     setRegInt={setRegInt}
                                 /> : null
                             }
+
+                            <Averages 
+                                cxArray={cxArray} 
+                                cyArray={cyArray} 
+                                xScale={xScale}
+                                yScale={yScale}
+                                innerHeight={innerHeight}
+                                innerWidth={innerWidth}
+                            />
 
                         </g>
 
