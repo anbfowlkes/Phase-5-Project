@@ -4,6 +4,8 @@ import { useData } from './useData'
 import { AxisBottom } from './AxisBottom'
 import { AxisLeft } from './AxisLeft'
 import { Marks } from './Marks'
+import Averages from './Averages'
+import Logos from './Logos'
 import './BarChart.css'
 import Dropdown from './Dropdown'
 import InfoDisplay from './InfoDisplay'
@@ -23,8 +25,10 @@ let BarChart = () => {
 
     let [teamDisplayed, setTeamDisplayed] = useState(null)
 
-    let width = (1.2) * 1200
-    let height = (1.2) * 600
+    let [logoToggle, setLogoToggle] = useState(false)
+
+    let width = (1.25) * 1200
+    let height = (1.25) * 600
     let margin = { top: 40, right: 20, bottom: 80, left: 200 }
     let innerHeight = height - (margin.top + margin.bottom)
     let innerWidth = width - (margin.left + margin.right)
@@ -123,15 +127,27 @@ let BarChart = () => {
 
                 <g transform={`translate(${margin.left},${margin.top})`}>
 
+
+                    {logoToggle ? 
+                    <Logos 
+                        yScale={yScale} 
+                        yValue={yValue} 
+                        xScale={xScale} 
+                        innerHeight={innerHeight}
+                        sortedData={sortedData}
+                        innerWidth={innerWidth}
+                        teamData={teamData}
+                    />
+                    :
                     <AxisBottom 
                         yScale={yScale} 
                         yValue={yValue} 
                         xScale={xScale} 
                         innerHeight={innerHeight}
-                        tickFormat={numFormatter}
                         sortedData={sortedData}
                         innerWidth={innerWidth}
                     />
+                    }
 
                     <AxisLeft yScale={yScale} innerHeight={innerHeight} tickFormat={numFormatter} />
 
@@ -141,14 +157,22 @@ let BarChart = () => {
                     y={innerHeight+55} 
                     textAnchor='middle'
                     >X Axis Label</text>
+
+                    <Averages
+                        sortedData={sortedData}
+                        xScale={xScale} 
+                        yScale={yScale} 
+                        xValue={xValue} 
+                        yValue={yValue}
+                        innerHeight={innerHeight}
+                    />
                     
                     <Marks 
                         sortedData={sortedData} 
                         xScale={xScale} 
                         yScale={yScale} 
                         xValue={xValue} 
-                        yValue={yValue} 
-                        tooltipFormat={numFormatter}
+                        yValue={yValue}
                         innerHeight={innerHeight}
                         teamData={teamData}
                         setTeamDisplayed={setTeamDisplayed}
@@ -157,6 +181,8 @@ let BarChart = () => {
                 </g>
 
             </svg>
+
+            <Switch toggle={logoToggle} setToggle={setLogoToggle} />
 
             <div>
                 <button onClick={addToFavorites}>Add To Favorites</button>

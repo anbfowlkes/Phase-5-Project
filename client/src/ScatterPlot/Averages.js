@@ -21,16 +21,16 @@ let Averages = ({ cxArray, cyArray, xScale, yScale, innerHeight, innerWidth }) =
                 y1={0} 
                 x2={xScale(xMean)} 
                 y2={innerHeight}
-                stroke='green'
-                stroke-width='5'
+                stroke='#4e9fd9'
+                stroke-width='4'
                 />
             <line 
                 x1={0} 
                 y1={yScale(yMean)} 
                 x2={innerWidth} 
                 y2={yScale(yMean)}
-                stroke='green'
-                stroke-width='5'
+                stroke='#4e9fd9'
+                stroke-width='4'
                 />
         </>
     )

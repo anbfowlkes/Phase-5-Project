@@ -48,6 +48,8 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
 
     let [infoToggle, setInfoToggle] = useState(false)
 
+    let [averagesToggle, setAveragesToggle] = useState(false)
+
     let [teamDisplayed, setTeamDisplayed] = useState(null)
 
     if (!data || !teamData) {
@@ -225,6 +227,17 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                                 tickOffset={7} 
                             />
 
+                            {averagesToggle ? 
+                            <Averages 
+                                cxArray={cxArray} 
+                                cyArray={cyArray} 
+                                xScale={xScale}
+                                yScale={yScale}
+                                innerHeight={innerHeight}
+                                innerWidth={innerWidth}
+                            />  
+                            : null}
+
                             <text 
                                 className='axis-label'
                                 x={innerWidth/2} 
@@ -277,15 +290,6 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                                 /> : null
                             }
 
-                            <Averages 
-                                cxArray={cxArray} 
-                                cyArray={cyArray} 
-                                xScale={xScale}
-                                yScale={yScale}
-                                innerHeight={innerHeight}
-                                innerWidth={innerWidth}
-                            />
-
                         </g>
 
                     </svg>
@@ -317,7 +321,13 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
             </div>
 
             <div>
+                {'Logos'}
                 <Switch toggle={logoToggle} setToggle={setLogoToggle} />
+            </div>
+
+            <div>
+                {'Averages'}
+                <Switch toggle={averagesToggle} setToggle={setAveragesToggle} />
             </div>
 
             <div className='scatterplot-info-display'>
