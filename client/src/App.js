@@ -10,6 +10,8 @@ import ScatterPlot from './ScatterPlot/ScatterPlot'
 import BarChart from './BarChart/BarChart'
 import LineChart from './LineChart/LineChart'
 import Favorites from './Favorites/Favorites'
+import Home from './Components/Home'
+import MustafaLogin from './Components/MustafaLogin'
 
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
             <Navbar  />
             <Routes > 
               {/* <Route path="/" element={ <LandingPage user={user}/>} /> */}
+              <Route path='/home' element={<Home />} />
+              <Route path='/mustafalogin' element={<MustafaLogin />} />
               <Route path='/scatterplot' element={<ScatterPlot inFavorites={false} />} />
               <Route path='/barchart' element={<BarChart inFavorites={false} />} />
               <Route path='/linechart' element={<LineChart inFavorites={false} />} />

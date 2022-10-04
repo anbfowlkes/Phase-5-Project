@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     skip_before_action :verify_authenticity_token
     include ActionController::Cookies
 
-    before_action :authorized
+    # before_action :authorized
 
     # def home
     #     render json: { hello: "world" }
@@ -102,37 +102,35 @@ class ApplicationController < ActionController::Base
         render json: data
     end
 
-    def encode_token(payload)
-        JWT.encode(payload, 'my_s3cr3t')
+    # --------------------------------------------- #
+
+    SECRET_KEY = 'my_code'
+
+    def generate_token(user_id)
+        JWT.encode({user_id: user_id}, SECRET_KEY)
     end
 
-    def auth_header
-        request.headers['Authorization']
+    # def auth_header
+    #     request.headers['Authorization']
+    # end
+
+    def decoded_token(token)
+        JWT.decode(token, SECRET_KEY)[0]["user_id"]
     end
 
-    def decoded_token
-        if auth_header
-            token = auth_header.split(' ')[1]
-        begin
-            JWT.decode(token, 'mys3cr3t', true, algorithm: 'HS256')
-        rescue JWT::DecodeError
-            nil
-        end
-    end
+    # def current_user
+    #     if decoded_token
+    #         user_id = decoded_token[0]['user_id']
+    #         @user = User.find_by(id: user_id)
+    #     end
+    # end
 
-    def current_user
-        if decoded_token
-            user_id = decoded_token[0]['user_id']
-            @user = User.find_by(id: user_id)
-        end
-    end
+    # def logged_in?
+    #     !!current_user
+    # end
 
-    def logged_in?
-        !!current_user
-    end
-
-    def authorized
-        render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
-    end
+    # def authorized
+    #     render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
+    # end
 
 end

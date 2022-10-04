@@ -14,6 +14,16 @@ const Navbar = () => {
                 </li> */}
                 <div className='nav-item-div'>
                     <li className='nav-item'>
+                        <Link to="/home">Home</Link>
+                    </li>
+                </div>
+                <div className='nav-item-div'>
+                    <li className='nav-item'>
+                        <Link to="/mustafalogin">Mustafa Login</Link>
+                    </li>
+                </div>
+                <div className='nav-item-div'>
+                    <li className='nav-item'>
                         <Link to="/scatterplot">Scatterplot</Link>
                     </li>
                 </div>
