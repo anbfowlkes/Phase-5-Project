@@ -36,3 +36,11 @@ gem 'rest-client', '~> 2.0.1'
 gem 'json', '~> 2.6', '>= 2.6.2'
 
 gem 'rack-cors'
+
+gem "jwt", "~> 2.5"
+
+gem "active_model_serializers", "~> 0.10.13"
+
+gem "faker", "~> 2.23"
+
+gem 'bcrypt', '~> 3.1', '>= 3.1.12'
