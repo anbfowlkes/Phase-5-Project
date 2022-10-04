@@ -1,0 +1,20 @@
+.home-div {
+    background-image: url("https://images.pexels.com/photos/7154759/pexels-photo-7154759.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    width: 800px;
+    height: 800px;
+    align-self: center;
+    margin: -5em auto;
+    /* border: solid black; */
+    z-index: -1;
+}
+
+.home-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-div {
+    margin-top: 5em;
+}

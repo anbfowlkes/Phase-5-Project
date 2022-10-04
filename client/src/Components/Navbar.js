@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Navbar.css'
 // import '../Styles/Navbar.css'
 
 const Navbar = () => {
+
     return (
         <div className="navbar">
             {/* <ul className='nav-links'> */}
@@ -12,6 +13,11 @@ const Navbar = () => {
                 {/* <li className='nav-item'>
                     <Link to="/">Home</Link>
                 </li> */}
+                {/* <div className='nav-item-div'>
+                    <li className='nav-item'>
+                        <Link to="/home">Home</Link>
+                    </li>
+                </div> */}
                 <div className='nav-item-div'>
                     <li className='nav-item'>
                         <Link to="/scatterplot">Scatterplot</Link>
@@ -27,11 +33,11 @@ const Navbar = () => {
                     <Link to='/linechart'>Line Chart</Link>
                 </li>    
                 </div>
-                <div className='nav-item-div'>
+                {/* <div className='nav-item-div'>
                     <li className='nav-item'>
                         <Link to='/favorites'>Favorites</Link>
                     </li>
-                </div>
+                </div> */}
                     
             {/* </ul> */}
         </div>
