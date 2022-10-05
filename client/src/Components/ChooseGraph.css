@@ -6,14 +6,18 @@
 }
 
 .choosegraph-title {
-    margin-top: 200px;
+    margin-top: 0px;
+}
+
+.choosegraph-title h1 {
+    font-size: 5em;
 }
 
 .cover {
     background-color: '#e3e3e3';
     /* color: '#e3e3e3' */
     /* border: solid black; */
-    width: 800px;
+    width: 1000px;
     height: 200px;
     margin-top: -50px;
     z-index: 2;
@@ -23,3 +27,22 @@
 .cover img {
     width: 100%;
 }
+
+.choose-buttons > button {
+    /* display: inline-block; */
+    width: 20%;
+    margin: 1em 2em;
+    height: 2em;
+    font-size: 1.1rem;
+    background-color: white;
+    border-color: white;
+    min-width: 300px;
+    border-radius: 1em;
+  }
+
+  .choose-buttons > button:hover {
+    transition-duration: 0.2s;
+    background-color: black; /* Green */
+    color: #e3e3e3;
+    cursor: pointer;
+  }

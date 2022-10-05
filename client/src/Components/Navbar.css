@@ -8,8 +8,9 @@
     column-gap: 7em;
     align-items: center;
     justify-content: center;
-    margin-top: 3em;
+    margin-top: 1.6em;
     z-index: 1;
+    font-size: 1.4em;
 }
 
 a:link {

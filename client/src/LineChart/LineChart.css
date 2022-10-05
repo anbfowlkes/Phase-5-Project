@@ -25,6 +25,23 @@
 
 }
 
+.linechart-menu-container {
+    margin-top: 3em;
+    margin-left: 0em;
+    margin-bottom: -1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.lc-span {
+    font-size: 2.2em;
+    color: #635F5D;
+    margin-right: -0.2em;
+}
+
 #checkbox-div {
     display: flex;
     flex-direction: row;

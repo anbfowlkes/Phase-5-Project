@@ -103,7 +103,7 @@ export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue
                                                 .curve(curveNatural)(arr)} 
                                             /> */}
                                         <circle
-                                            style={{fill: `#${color}`}}
+                                            style={{fill: `#${color}`, zIndex: '-2'}}
                                             cx={xScale(d.week)}
                                             cy={yScale(myY(d))} 
                                             r={6}

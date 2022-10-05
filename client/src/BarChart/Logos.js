@@ -1,11 +1,8 @@
 let Logos = ( { teamData, sortedData, xScale, yValue, yScale } ) => {
-
-    console.log(yScale(yValue))
-    let count = -1
+    
     let logos = []
 
-    console.log('teamData: ', teamData)
-    console.log('sortedData: ', sortedData)
+    console.log('yValue: ', yValue)
 
     for (let i = 0; i < sortedData.length; i++) {
         for (let k = 0; k < teamData.length; k++) {
@@ -15,43 +12,22 @@ let Logos = ( { teamData, sortedData, xScale, yValue, yScale } ) => {
         }
     }
 
-    console.log('logos: ', logos)
+    let count = 0
 
     return (
 
-        sortedData.map((d) => {
-            
+        sortedData.map((d) => {            
             let tickValue = xScale.domain()[count]
             count = count + 1
-
-            // console.log('tickValue: ', tickValue)
-            // console.log('xScale(tickValue)', xScale(tickValue))
-            // console.log('xScale.bandwidth(): ', xScale.bandwidth())
-
-            // console.log('xCalculation: ', xScale(tickValue) + xScale.bandwidth() / 2)
-
-            let xCalculation = xScale(tickValue) + xScale.bandwidth() / 2
-
             return (
-            
-                    // <text 
-                    //     style={{textAnchor: 'end', fontSize: '10px', width: '100px'}} 
-                    //     dy='.32em' 
-                    //     x={xScale(tickValue) + xScale.bandwidth() / 2}
-                    //     y={yScale(yValue(d)) - 10}
-                    //     >
-                            
-                    // </text>
                     <image 
-                        // href='https://upload.wikimedia.org/wikipedia/en/7/77/Buffalo_Bills_logo.svg'
                         href={logos[count]}
-                        // className='mark'
-                        // transform={`translate(${-65} ${-25})`}
-                        x={xScale(tickValue) + xScale.bandwidth() / 2 - 65}
-                        y={yScale(yValue(d)) - 10 - 25}
+                        transform={`translate(${-65} ${-75})`}
+                        x={xScale(tickValue) + xScale.bandwidth() / 2}
+                        y={yScale(yValue(d))}
                         width={30}
+                        height={30}
                         id={d.Team}
-                        // r={circleRadius}
                     ></image>
                 
                 )

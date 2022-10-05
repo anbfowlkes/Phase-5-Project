@@ -29,7 +29,7 @@ let BarChart = () => {
 
     let width = (1.25) * 1200
     let height = (1.25) * 600
-    let margin = { top: 40, right: 20, bottom: 80, left: 200 }
+    let margin = { top: 60, right: 20, bottom: 80, left: 200 }
     let innerHeight = height - (margin.top + margin.bottom)
     let innerWidth = width - (margin.left + margin.right)
 
@@ -61,7 +61,7 @@ let BarChart = () => {
         }
     })
 
-    console.log('attributes: ', attributes)
+    // console.log('attributes: ', attributes)
 
     // the 'd' bellow represents one element (row) of the data
     //we're using a band scale which is useful for ordinal data
@@ -74,9 +74,9 @@ let BarChart = () => {
 
     let sortedData = [...data]
     sortedData = sortedData.sort((a,b) => {
-        return (a[yAttribute] < b[yAttribute] ? 1 : -1)
+        return (a[yAttribute] < b[yAttribute] ? -1 : 1)
     })
-    console.log(sortedData)
+    // console.log(sortedData)
 
     let xScale = scaleBand()
         .domain(sortedData.map(xValue))
@@ -86,10 +86,10 @@ let BarChart = () => {
     let yScale = scaleLinear()
         .domain([0, max(data, yValue)])
         .range([innerHeight, 0])
-        // .nice()
+        .nice()
     
     // console.log(xScale.ticks())
-    console.log(yScale.domain())
+    // console.log(yScale.domain())
 
     const numFormatter = n => format('.2s')(n).replace('G','B')
 
@@ -104,26 +104,30 @@ let BarChart = () => {
             })
         })
         let res = await req.json()
-        console.log(res)
+        // console.log(res)
         alert('added to favorites')
     }
 
     return (
         <>
 
-            <div className='menus-container'>
-                <div>
-                    <span className='dropdown-label'>X:</span>
-                    <ReactDropdown
-                        options={attributes}
-                        value={yAttribute}
-                        onChange={({ value }) => setYAttribute(value)}
-                    />
+            <div className='barchart-menus-container'>
+                <div className='single-menu'>
+                    <div>
+                        <span className='barchart-dropdown-label'>Y:</span>
+                    </div>
+                    <div>
+                        <ReactDropdown
+                            options={attributes}
+                            value={yAttribute}
+                            onChange={({ value }) => setYAttribute(value)}
+                        />
+                    </div>
                 </div>
 
             </div>
 
-            <svg width={width} height={height} >
+            <svg className='barchart-svg' width={width} height={height} >
 
                 <g transform={`translate(${margin.left},${margin.top})`}>
 
@@ -149,14 +153,27 @@ let BarChart = () => {
                     />
                     }
 
-                    <AxisLeft yScale={yScale} innerHeight={innerHeight} tickFormat={numFormatter} />
+                    <AxisLeft 
+                    yScale={yScale} 
+                    innerHeight={innerHeight} 
+                    tickFormat={numFormatter} 
+                    innerWidth={innerWidth}
+                    />
 
                     <text 
-                    className='axis-label'
-                    x={innerWidth/2} 
-                    y={innerHeight+55} 
-                    textAnchor='middle'
-                    >X Axis Label</text>
+                        className='barchart-axis-label'
+                        x={innerWidth/2} 
+                        y={innerHeight+55} 
+                        textAnchor='middle'
+                    >Teams</text>
+
+                    <text 
+                        className='scatterplot-axis-label-left'
+                        textAnchor='middle'
+                        transform={`translate(${-90}, ${innerHeight/2}) rotate(-90)`}     
+                    >
+                        {colDisplayer(yAttribute)}
+                    </text>
 
                     <Averages
                         sortedData={sortedData}
@@ -182,26 +199,21 @@ let BarChart = () => {
 
             </svg>
 
-            <Switch toggle={logoToggle} setToggle={setLogoToggle} />
-
-            <div>
-                <button onClick={addToFavorites}>Add To Favorites</button>
-            </div>
-
+            {/* <Switch toggle={logoToggle} setToggle={setLogoToggle} /> */}
             
 
 
 
             <div className='scatterplot-info-display'>
-                <Switch toggle={infoToggle} setToggle={setInfoToggle} />
-                {infoToggle ? 
-                    <InfoDisplay 
-                        yAttribute={yAttribute}
-                        data={data}
-                        teamDisplayed={teamDisplayed}
-                        colDisplayer={colDisplayer}
-                        teamData={teamData}
-                    /> : null}
+                
+                
+                <InfoDisplay 
+                    yAttribute={yAttribute}
+                    data={data}
+                    teamDisplayed={teamDisplayed}
+                    colDisplayer={colDisplayer}
+                    teamData={teamData}
+                />
             </div>
             
         </>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Marks = ( { data, teamData, xScale, yScale, xValue, yValue, circleRadius, handleTeamClick } ) => {
+const Marks = ( { data, teamData, xScale, yScale, xValue, yValue, handleTeamClick } ) => {
     
     let cxArray = []
 
@@ -44,7 +44,7 @@ const Marks = ( { data, teamData, xScale, yScale, xValue, yValue, circleRadius, 
                     className='mark'
                     cx={xScale(xValue(d))}
                     cy={yScale(yValue(d))}
-                    r={circleRadius}
+                    r={10}
                     id={d.Team}
                 >
                     <title>{d.Team}</title>

@@ -127,15 +127,36 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
 
     // console.log(columns)
     // console.log(data)
+
+    console.log(extent(data, xValue))
+
+    let xpercentExtension = 0.01
+    let ypercentExtension = 0.03
+
+    let xDomainSetter = () => {
+        let arr = extent(data, xValue)
+        arr[0] = arr[0] - (xpercentExtension)*arr[0]
+        arr[1] = arr[1] + (xpercentExtension)*arr[1]
+        // console.log(arr)
+        return(arr)
+    }
     
+    let yDomainSetter = () => {
+        let arr = extent(data, yValue)
+        arr[0] = arr[0] - (ypercentExtension)*arr[0]
+        arr[1] = arr[1] + (ypercentExtension)*arr[1]
+        // console.log(arr)
+        return(arr)
+    }
+
     let xScale = scaleLinear()
-        .domain(extent(data, xValue))
+        .domain(xDomainSetter())
         .range([0, innerWidth])
         .nice()
         // .domain([min(data, xValue), max(data, xValue)]) instead of doing this, extent does the same thing
         
     let yScale = scaleLinear()
-        .domain(extent(data, yValue))
+        .domain(yDomainSetter())
         .range([innerHeight, 0])
         .nice()
 
@@ -193,23 +214,31 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
 
                     {inFavorites ? 
                     null :
-                    <div className='menus-container'>
-                        <div>
-                            <span className='scatterplot-dropdown-label'>X:</span>
-                            <ReactDropdown 
-                                options={attributes}
-                                value={xAttribute}
-                                onChange={({ value }) => setXAttribute(value)}
-                            />
+                    <div className='scatterplot-menus-container'>
+                        <div className='single-menu'>
+                            <div>
+                                <span className='scatterplot-dropdown-label'>X:</span>
+                            </div>
+                            <div>
+                                <ReactDropdown 
+                                    options={attributes}
+                                    value={xAttribute}
+                                    onChange={({ value }) => setXAttribute(value)}
+                                />
+                            </div>
                         </div>
                         
-                        <div>
-                            <span className='scatterplot-dropdown-label'>Y:</span>
-                            <ReactDropdown 
-                                options={attributes}
-                                value={yAttribute}
-                                onChange={({ value }) => setYAttribute(value)}
-                            />  
+                        <div className='single-menu'>
+                            <div>
+                                <span className='scatterplot-dropdown-label'>Y:</span>
+                            </div>
+                            <div>
+                                <ReactDropdown 
+                                    options={attributes}
+                                    value={yAttribute}
+                                    onChange={({ value }) => setYAttribute(value)}
+                                />
+                            </div>
                         </div>
                     
                     </div>
@@ -267,7 +296,6 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                                 yScale={yScale} 
                                 xValue={xValue}
                                 yValue={yValue} 
-                                circleRadius={7}
                                 innerHeight={innerHeight}
                                 handleTeamClick={handleTeamClick}
                             /> : <Logos 

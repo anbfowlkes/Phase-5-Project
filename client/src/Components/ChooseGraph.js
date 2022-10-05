@@ -35,7 +35,7 @@ let ChooseGraph = ({ setInHome }) => {
             <div className='choosegraph-title'>
                 <h1>Choose Your Graph Type</h1>
             </div>
-            <div>
+            <div className='choose-buttons'>
                 <button onClick={goScatterPlot}>Scatterplot</button>
                 <button onClick={goBarChart}>Bar Graph</button>
                 <button onClick={goLineChart}>Line Graph</button>

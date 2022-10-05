@@ -167,9 +167,12 @@ let LineChart = () => {
 
         <>
             
-            <div className='menus-container'>
-                <div>
+            <div className='linechart-menu-container'>
+            
+                <div className='lc-span'>
                     <span className='linechart-dropdown-label'>Y:</span>
+                </div>
+                <div>
                     <ReactDropdown
                         options={attributes}
                         value={yAttribute}

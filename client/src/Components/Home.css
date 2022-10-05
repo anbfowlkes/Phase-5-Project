@@ -1,11 +1,18 @@
 .home-div {
-    background-image: url("https://images.pexels.com/photos/7154759/pexels-photo-7154759.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    /* background-image: url("https://images.pexels.com/photos/7154759/pexels-photo-7154759.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"); */
     width: 800px;
     height: 800px;
-    align-self: center;
+    /* align-self: center; */
     margin: -5em auto;
     /* border: solid black; */
     z-index: -1;
+}
+
+.home-div img {
+    /* box-shadow: 100px 100px 50px 50px #e3e3e3; */
+    margin-left: 1.1em;
+    margin-top: -3em;
+    /* margin-bottom: -5em; */
 }
 
 .home-page {
@@ -16,5 +23,45 @@
 }
 
 .header-div {
-    margin-top: 5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
 }
+
+.header-div h1 {
+    font-size: 4em;
+}
+
+.header-div > h1:first-of-type {
+    margin-top: 1em;
+    margin-bottom: 0em;
+}
+
+.header-div > h2:first-of-type {
+    font-size: 3em;
+    margin-top: 1.2em;
+}
+
+.under-text {
+    margin-top: -8em;
+}
+
+.home-button > button {
+    display: block;
+    width: 60%;
+    margin: 1em auto;
+    height: 2em;
+    font-size: 1.1rem;
+    background-color: white;
+    border-color: white;
+    min-width: 300px;
+    border-radius: 1em;
+  }
+
+  .home-button > button:hover {
+    transition-duration: 0.2s;
+    background-color: black; /* Green */
+    color: #e3e3e3;
+    cursor: pointer;
+  }
