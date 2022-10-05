@@ -34,6 +34,8 @@ let LineChart = () => {
 
     let [labelToggle, setLabelToggle] = useState(false)
 
+    let [teamIndicated, setTeamIndicated] = useState(null)
+
     if (!data || !teamData || !columns) {
         return <pre>'Loading...'</pre>
     }
@@ -88,6 +90,14 @@ let LineChart = () => {
             && col != 'SeasonType'
             && col != 'Date'
             && col != 'DayOfWeek'
+            && col != 'Week'
+            && col != 'GameKey'
+            && col != 'TimeOfPossession'
+            && col != 'Stadium'
+            && col != 'ScoreID'
+            && col != 'OpponentID'
+            && col != 'Opponent'
+            && col != 'HomeOrAway'
             ) {
             attributes.push({ value: col, label: colDisplayer(col) })
         }
@@ -139,6 +149,19 @@ let LineChart = () => {
         // console.log('selectedTeams: ', selectedTeams)
     }
 
+    let indicatedTeamLogoUrl = (teamIndicated) => {
+        let logo
+        // if (teamIndicated) {
+            teamData.forEach((teamObj) => {
+                if (teamIndicated == teamObj.Key) {
+                    logo = teamObj.WikipediaLogoUrl
+                }
+            })
+        // }
+        console.log(logo)
+        return logo
+    }
+
 
     return (
 
@@ -146,7 +169,7 @@ let LineChart = () => {
             
             <div className='menus-container'>
                 <div>
-                    <span className='dropdown-label'>Y:</span>
+                    <span className='linechart-dropdown-label'>Y:</span>
                     <ReactDropdown
                         options={attributes}
                         value={yAttribute}
@@ -174,7 +197,7 @@ let LineChart = () => {
                         />
 
                         <text 
-                            className='axis-label'
+                            className='linechart-axis-label'
                             x={innerWidth/2} 
                             y={innerHeight + xAxisLabelOffset} 
                             textAnchor='middle'
@@ -183,7 +206,7 @@ let LineChart = () => {
                         </text>
 
                         <text 
-                            className='axis-label'
+                            className='linechart-axis-label'
                             textAnchor='middle'
                             transform={`translate(${-yAxisLabelOffset}, ${innerHeight/2}) rotate(-90)`}     
                         >
@@ -203,6 +226,7 @@ let LineChart = () => {
                             selectedTeams={selectedTeams}
                             yAttribute={yAttribute}
                             teamData={teamData}
+                            setTeamIndicated={setTeamIndicated}
                             />
                         : null}
                         
@@ -217,7 +241,6 @@ let LineChart = () => {
                                 yValue={yValue}
                                 teamArray={teamArray}
                                 tooltipFormat={xAxisTickFormatter}
-                                circleRadius={4}
                                 selectedTeams={selectedTeams}
                                 yAttribute={yAttribute}
                                 teamData={teamData}
@@ -256,6 +279,12 @@ let LineChart = () => {
                     <div className='controller'>
                         <h3>{'No Line'}</h3>
                         <Switch toggle={pathToggle} setToggle={setPathToggle} />
+                    </div>
+
+
+                    <div className='linechart-team-indicator'>
+                        <p>{teamIndicated}</p>
+                        <img src={indicatedTeamLogoUrl(teamIndicated)} />
                     </div>
                     {/* <div className='controller'>
                         <h3>{'Show Labels'}</h3>

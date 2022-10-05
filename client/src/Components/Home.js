@@ -24,6 +24,9 @@ let Home = ({ setInHome }) => {
             <div className='home-div' >
 
             </div>
+            <div>
+                <h2>{'Over 4 trillion NFL graphs, at your fingertips.'}</h2>
+            </div>
         </div>
     )
 }

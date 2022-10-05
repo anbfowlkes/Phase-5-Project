@@ -10,6 +10,7 @@ import ScatterPlot from './ScatterPlot/ScatterPlot'
 import BarChart from './BarChart/BarChart'
 import LineChart from './LineChart/LineChart'
 import Home from './Components/Home'
+import ChooseGraph from './Components/ChooseGraph'
 import Favorites from './Favorites/Favorites'
 
 
@@ -25,21 +26,34 @@ function App() {
   //   callToRails()
   // }, [])
 
-  let [inHome, setInHome] = useState(true)
+  let [inHome, setInHome] = useState(false)
 
-  if (inHome) {
+  if (inHome == 0) {
     return (
       <Home setInHome={setInHome}/>
     )
-  } else {
+  } 
+  // else if (inHome == 1) {
+  //   return (
+  //     <div>
+  //       <BrowserRouter>
+  //       <ChooseGraph setInHome={setInHome} />
+  //               <Route path='/scatterplot' element={<ScatterPlot inFavorites={false} />} />
+  //               <Route path='/barchart' element={<BarChart inFavorites={false} />} />
+  //               <Route path='/linechart' element={<LineChart inFavorites={false} />} />
+  //       </BrowserRouter>
+  //     </div>
+  //   )
+  // } 
+  else {
       return (
         <div>
           <BrowserRouter>
-            <Navbar />
+            <Navbar setInHome={setInHome} />
             <Routes >
               {/* <Route path="/" element={ <LandingPage user={user}/>} /> */}
               {/* <Route path='/home' element={<Home />} /> */}
-              <Route path='/' element={<ScatterPlot inFavorites={false} />} />
+              <Route path='/' element={<ChooseGraph setInHome={setInHome} />} />
               <Route path='/scatterplot' element={<ScatterPlot inFavorites={false} />} />
               <Route path='/barchart' element={<BarChart inFavorites={false} />} />
               <Route path='/linechart' element={<LineChart inFavorites={false} />} />

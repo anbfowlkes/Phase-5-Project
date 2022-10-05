@@ -60,7 +60,7 @@ export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue
                     let color
                     teamData.forEach((teamObj) => {
                         if (teamObj.Key == arr[0].team) {
-                            color = teamObj.PrimaryColor
+                            color = teamObj.SecondaryColor
                         }
                     })
                     
@@ -106,7 +106,7 @@ export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue
                                             style={{fill: `#${color}`}}
                                             cx={xScale(d.week)}
                                             cy={yScale(myY(d))} 
-                                            r={circleRadius}
+                                            r={6}
                                         >
                                             {/* <title>{xValue(d)}</title> */}
                                         </circle>

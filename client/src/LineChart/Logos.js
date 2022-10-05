@@ -67,10 +67,10 @@ const Logos = ( { data, selectedTeams, teamData, xScale, yScale, xValue, yValue 
                                 // onClick={handleTeamClick}
                                 href={logoUrl}
                                 // className='mark'
-                                transform={`translate(${-10} ${-7})`}
+                                transform={`translate(${-15} ${-12})`}
                                 x={xScale(xValue(d))}
                                 y={yScale(yValue(d))}
-                                width={20}
+                                width={30}
                                 id={d.Team}
                                 // r={circleRadius}
                             >

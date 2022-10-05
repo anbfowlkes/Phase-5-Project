@@ -13,6 +13,7 @@ import InfoDisplay from './InfoDisplay'
 import Averages from './Averages'
 import ReactDropdown from 'react-dropdown'
 import Switch from './Switch'
+import nflshield from './nflshield.PNG'
 // import ToggleButton from 'react-toggle-button'
 
 
@@ -56,9 +57,9 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
         return <pre>'Loading...'</pre>
     }
 
-    let width = (1.2) * 960
+    let width = (1.4) * 960
     let menuHeight = 60
-    let height = (1.2) * (600 - 60)
+    let height = (1.4) * (600 - 60)
     let margin = { top: 40, right: 20, bottom: 80, left: 300 }
     let innerHeight = height - (margin.top + margin.bottom)
     let innerWidth = width - (margin.left + margin.right)
@@ -182,7 +183,11 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
 
     return (
         <>
+            <div classname='scatterplot-shield'>
+                <img className='scatterplot-nflshield' src='https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/1200px-National_Football_League_logo.svg.png' />
+            </div>
             <div className='scatterPlotDiv'>
+                
                 <div className='menuAndScatterPlot'>
 
 
@@ -190,7 +195,7 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                     null :
                     <div className='menus-container'>
                         <div>
-                            <span className='dropdown-label'>X:</span>
+                            <span className='scatterplot-dropdown-label'>X:</span>
                             <ReactDropdown 
                                 options={attributes}
                                 value={xAttribute}
@@ -199,7 +204,7 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                         </div>
                         
                         <div>
-                            <span className='dropdown-label'>Y:</span>
+                            <span className='scatterplot-dropdown-label'>Y:</span>
                             <ReactDropdown 
                                 options={attributes}
                                 value={yAttribute}
@@ -211,7 +216,7 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                     }
                     
 
-                    <svg width={width} height={height} >
+                    <svg className='scatterplot-g' width={width} height={height} >
 
                         <g transform={`translate(${margin.left},${margin.top})`}>
 
@@ -239,18 +244,18 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                             : null}
 
                             <text 
-                                className='axis-label'
+                                className='scatterplot-axis-label-bottom'
                                 x={innerWidth/2} 
-                                y={innerHeight + xAxisLabelOffset} 
+                                y={innerHeight + xAxisLabelOffset + 20} 
                                 textAnchor='middle'
                             >
                                 {xAxisLabel}
                             </text>
 
                             <text 
-                                className='axis-label'
+                                className='scatterplot-axis-label-left'
                                 textAnchor='middle'
-                                transform={`translate(${-yAxisLabelOffset}, ${innerHeight/2}) rotate(-90)`}     
+                                transform={`translate(${-yAxisLabelOffset - 10}, ${innerHeight/2}) rotate(-90)`}     
                             >
                                 {yAxisLabel}
                             </text>
@@ -297,42 +302,62 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
 
                 </div>
 
-                <div className='regressionBox'>
-                    <div className='regHead'>
-                        <h3>{'View Regression Analysis'}</h3>
+                <div className='scatterplot-control-panel'>
+                    <div className='scatterplot-panel'>
+                        <h3>Logos</h3>
+                        <Switch toggle={logoToggle} setToggle={setLogoToggle} />
+                    </div>
+
+                    <div className='scatterplot-panel'>
+                        <h3>Averages</h3>
+                        <Switch toggle={averagesToggle} setToggle={setAveragesToggle} />
+                    </div>
+
+                    <div className='scatterplot-panel'>
+                        <h3>Regression</h3>
                         <Switch toggle={regToggle} setToggle={setRegToggle} />
                     </div>
+                </div>
+
+            </div>
+
+            <div className='scatterplot-info-switch'>
+                <Switch toggle={infoToggle} setToggle={setInfoToggle} />
+            </div>
+            
+            {infoToggle? 
+            <div className='scatterplot-info-display-outer'>
+                
+                
+                
+                <div className='regressionBox'>
+                    <div className='regHead'>
+                        <h3>{'Regression Analysis:'}</h3>
+                        {/* <Switch toggle={regToggle} setToggle={setRegToggle} /> */}
+                    </div>
                     <div className='regDispDiv'>
-                        {regToggle ? 
-                            <RegressionDisplay 
+                        
+                        <RegressionDisplay 
                             regCor={regCor} 
                             regSlope={regSlope} 
                             regInt={regInt} 
                             xAxisLabel={xAxisLabel}
                             yAxisLabel={yAxisLabel}
                             colDisplayer={colDisplayer}
-                        /> : null}
+                        />
                     </div>
                 </div>
-            </div>
 
-            <div>
-                <button onClick={addToFavorites}>Add To Favorites</button>
-            </div>
+                <div className='scatterplot-averages'>
 
-            <div>
-                {'Logos'}
-                <Switch toggle={logoToggle} setToggle={setLogoToggle} />
-            </div>
+                </div>
 
-            <div>
-                {'Averages'}
-                <Switch toggle={averagesToggle} setToggle={setAveragesToggle} />
-            </div>
+                {/* <div>
+                    <button onClick={addToFavorites}>Add To Favorites</button>
+                </div> */}
 
-            <div className='scatterplot-info-display'>
-                <Switch toggle={infoToggle} setToggle={setInfoToggle} />
-                {infoToggle ? 
+                <div className='scatterplot-info-display'>
+                     
                     <InfoDisplay 
                         xAttribute={xAttribute}
                         yAttribute={yAttribute}
@@ -340,10 +365,14 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                         teamDisplayed={teamDisplayed}
                         colDisplayer={colDisplayer}
                         teamData={teamData}
-                    /> : null}
+                    />
+                </div>
+                
             </div>
+            : null}
+            <div className='scatterplot-bottom'>
 
-            
+            </div>
         </>
     )
 }

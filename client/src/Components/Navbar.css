@@ -9,8 +9,17 @@
     align-items: center;
     justify-content: center;
     margin-top: 3em;
+    z-index: 1;
 }
 
 a:link {
-    color: red;
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: #33523b;
 }

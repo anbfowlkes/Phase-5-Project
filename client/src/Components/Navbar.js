@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import './Navbar.css'
 // import '../Styles/Navbar.css'
 
-const Navbar = () => {
+const Navbar = ({ setInHome }) => {
 
     return (
         <div className="navbar">
@@ -13,11 +13,11 @@ const Navbar = () => {
                 {/* <li className='nav-item'>
                     <Link to="/">Home</Link>
                 </li> */}
-                {/* <div className='nav-item-div'>
-                    <li className='nav-item'>
-                        <Link to="/home">Home</Link>
+                <div className='nav-item-div'>
+                    <li onClick={() => setInHome(prev=>!prev)} className='nav-item'>
+                        <Link to="/">Home</Link>
                     </li>
-                </div> */}
+                </div>
                 <div className='nav-item-div'>
                     <li className='nav-item'>
                         <Link to="/scatterplot">Scatterplot</Link>

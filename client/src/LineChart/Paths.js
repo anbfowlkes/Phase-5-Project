@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { line, curveNatural, curveLinear, curveStep, curveMonotoneX, curveMonotoneY } from 'd3'
 
-let Paths = ( { data, teamData, selectedTeams, yAttribute, xScale, yScale, xValue, yValue } ) => {
+let Paths = ( { setTeamIndicated, data, teamData, selectedTeams, yAttribute, xScale, yScale, xValue, yValue } ) => {
 
     let teams = [...teamData]
     let count = 0
@@ -48,7 +48,7 @@ let Paths = ( { data, teamData, selectedTeams, yAttribute, xScale, yScale, xValu
                 console.log('thisTeam: ', thisTeam)
                 teamData.forEach((teamInfo) => {
                     if (teamInfo.Key == thisTeam) {
-                        teamColor = teamInfo.PrimaryColor
+                        teamColor = teamInfo.SecondaryColor
                     }
                 })
                 let color = teams[count].PrimaryColor
@@ -56,6 +56,19 @@ let Paths = ( { data, teamData, selectedTeams, yAttribute, xScale, yScale, xValu
                 count++
                 return(
                     <path 
+                        onMouseEnter={(e) =>{
+                            console.log('entered')
+                            console.log(thisTeam)
+                            setTeamIndicated(thisTeam)
+                            // e.target.style.stroke='blue'
+                            e.target.style.strokeWidth=10
+                        }}
+                        onMouseLeave={(e) => {
+                            console.log('exited')
+                            setTeamIndicated(null)
+                            e.target.style.stroke=`#${teamColor}`
+                            e.target.style.strokeWidth=5
+                        } }
                         className='line-paths'
                         fill='none'
                         stroke={`#${teamColor}`}

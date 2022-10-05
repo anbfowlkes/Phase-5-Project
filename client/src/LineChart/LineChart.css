@@ -18,10 +18,11 @@
     stroke-linecap: round;
 }
 
-.axis-label {
-    font-family: 'Poppins';
-    font-size: 2.5em;
-    fill: #635F5D
+.linechart-axis-label {
+    /* font-family: 'Poppins'; */
+    font-size: 2.0em;
+    fill: #635F5D;
+
 }
 
 #checkbox-div {
@@ -30,10 +31,12 @@
     align-items: center;
     text-align: center;
     flex-wrap: wrap;
+    margin-top: 1em;
+    margin-left: 8%;
 }
 
 .line-paths {
-    stroke-width: 3px;
+    stroke-width: 5px;
 }
 
 .line-logos {
@@ -44,9 +47,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     width: 24%;
-    margin-bottom: 5em;
+    margin-bottom: 3em;
 }
 
 .line-graph-and-controllers {
@@ -73,4 +76,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.linechart-team-indicator {
+    width: 4em;
+    height: 4em;
+    /* border: solid black; */
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.linechart-team-indicator img {
+    width: 4em;
 }
