@@ -6,7 +6,7 @@ let Paths = ( { setTeamIndicated, data, teamData, selectedTeams, yAttribute, xSc
     let teams = [...teamData]
     let count = 0
 
-    console.log('teams: ', teams)
+    // console.log('teams: ', teams)
     
     let storageArray = []
 
@@ -36,35 +36,35 @@ let Paths = ( { setTeamIndicated, data, teamData, selectedTeams, yAttribute, xSc
         }
     }, [storageArray])
     
-    console.log('storageArray: ', storageArray)
+    // console.log('storageArray: ', storageArray)
 
-    console.log('colors: ', colors)
+    // console.log('colors: ', colors)
 
     return(
         <>
              {storageArray.map((arr) => {
                 let thisTeam = arr[0].team
                 let teamColor
-                console.log('thisTeam: ', thisTeam)
+                // console.log('thisTeam: ', thisTeam)
                 teamData.forEach((teamInfo) => {
                     if (teamInfo.Key == thisTeam) {
                         teamColor = teamInfo.SecondaryColor
                     }
                 })
                 let color = teams[count].PrimaryColor
-                console.log('color: ', color)
+                // console.log('color: ', color)
                 count++
                 return(
                     <path 
                         onMouseEnter={(e) =>{
-                            console.log('entered')
-                            console.log(thisTeam)
+                            // console.log('entered')
+                            // console.log(thisTeam)
                             setTeamIndicated(thisTeam)
                             // e.target.style.stroke='blue'
                             e.target.style.strokeWidth=10
                         }}
                         onMouseLeave={(e) => {
-                            console.log('exited')
+                            // console.log('exited')
                             setTeamIndicated(null)
                             e.target.style.stroke=`#${teamColor}`
                             e.target.style.strokeWidth=5

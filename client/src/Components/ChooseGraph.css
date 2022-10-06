@@ -37,7 +37,7 @@
     background-color: white;
     border-color: white;
     min-width: 300px;
-    border-radius: 1em;
+    /* border-radius: 1em; */
   }
 
   .choose-buttons > button:hover {

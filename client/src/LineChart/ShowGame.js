@@ -2,11 +2,13 @@ let ShowGame = ({ data, teamData, objClicked, colDisplayer, yAttribute }) => {
 
     if (!objClicked) {
         return (
-            <div></div>
+            <div className='showgame-div'>
+                <h2>Game Information:</h2>
+            </div>
         )
     }
 
-    console.log('objClicked: ', objClicked)
+    // console.log('objClicked: ', objClicked)
     let opponent = objClicked.info.Opponent
     let team = objClicked.info.Team
     let week = objClicked.info.Week

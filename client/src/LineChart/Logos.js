@@ -31,7 +31,7 @@ const Logos = ( { data, selectedTeams, teamData, xScale, yScale, xValue, yValue,
         })
     })
 
-    console.log('logoUrls: ', logoUrls)
+    // console.log('logoUrls: ', logoUrls)
 
     let count = 0
 

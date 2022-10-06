@@ -45,7 +45,7 @@ let LineChart = () => {
         return <pre>'Loading...'</pre>
     }
 
-    console.log('seasonData: ', seasonData)
+    // console.log('seasonData: ', seasonData)
 
     // the 'd' bellow represents one element (row) of the data
     //we're using a band scale which is useful for ordinal data
@@ -63,7 +63,7 @@ let LineChart = () => {
 
 
 
-    console.log('teamArray: ', teamArray)
+    // console.log('teamArray: ', teamArray)
 
     const xValue = (d) => d.week
     const yValue = (d) => d.info[yAttribute]
@@ -111,7 +111,7 @@ let LineChart = () => {
         }
     })
 
-    console.log('attributes: ', attributes)
+    // console.log('Linchart Attributes: ', attributes)
 
     //xValue is a function that takes in a row of the data and sends it to the sepal_length, then what happens below is we say we want to go from the min of these values to the max for our xScale domain on our scatterchart. The xValue function is an accessor which tells the computer what we're basing the min and max off of in the data
     
@@ -133,14 +133,14 @@ let LineChart = () => {
     const xAxisLabelOffset = 65
     const yAxisLabelOffset = 50
 
-    console.log('ticks console.log: ', xScale.ticks())
-    console.log('yScale domain console.log: ', yScale.domain())
+    // console.log('ticks console.log: ', xScale.ticks())
+    // console.log('yScale domain console.log: ', yScale.domain())
 
    
     const xAxisTickFormatter = () => {}
 
     let handleCheck = (e) => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         let val = e.target.value
         if (selectedTeams.includes(val)) {
             let arr = [...selectedTeams]
@@ -166,7 +166,7 @@ let LineChart = () => {
                 }
             })
         // }
-        console.log(logo)
+        // console.log(logo)
         return logo
     }
 

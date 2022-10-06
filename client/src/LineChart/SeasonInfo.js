@@ -6,12 +6,14 @@ let SeasonInfo = ({ objClicked, seasonData, teamData, yAttribute, colDisplayer }
 
     if (!objClicked) {
         return (
-            <div></div>
+            <div className='show-season'>
+                <h2>Season Information:</h2>
+            </div>
         )
     }
     console.log('seasonData: ', seasonData)
 
-    console.log('objClicked: ', objClicked)
+    // console.log('objClicked: ', objClicked)
     let team = objClicked.team
     let total
     let totalSum = 0
@@ -35,7 +37,7 @@ let SeasonInfo = ({ objClicked, seasonData, teamData, yAttribute, colDisplayer }
     sortedTeams.sort((a,b) => {
         return (a[yAttribute] < b[yAttribute] ? -1 : 1)
     })
-    console.log('sortedTeams: ', sortedTeams)
+    // console.log('sortedTeams: ', sortedTeams)
 
     let rank
     for (let i = 0; i < sortedTeams.length; i++) {
@@ -45,7 +47,7 @@ let SeasonInfo = ({ objClicked, seasonData, teamData, yAttribute, colDisplayer }
     }
     return (
         <div className='show-season'>
-            <h2>Season Information</h2>
+            <h2>Season Information:</h2>
             <p>{teamName}</p>
             <p>Total {colDisplayer(yAttribute)}: {total}</p>
             <p>League Average: {leagueAvg}</p>

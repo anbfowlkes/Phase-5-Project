@@ -57,9 +57,8 @@ export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue
     return (
         <>
             <g className='marks'>
-                {console.log('storage: ', storageArray)}
                 {storageArray.map((arr) => {
-                    console.log('arr: ', arr)
+                    // console.log('arr: ', arr)
                     let color
                     teamData.forEach((teamObj) => {
                         if (teamObj.Key == arr[0].team) {
@@ -67,8 +66,8 @@ export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue
                         }
                     })
                     
-                    console.log('color: ', color)
-                    console.log('teamData: ', teamData)
+                    // console.log('color: ', color)
+                    // console.log('teamData: ', teamData)
                     return (
 
                         // <path 

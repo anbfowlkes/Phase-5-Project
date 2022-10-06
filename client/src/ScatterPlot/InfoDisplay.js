@@ -1,7 +1,7 @@
 let InfoDisplay = ({ data, xAttribute, yAttribute, teamDisplayed, colDisplayer, teamData }) => {
 
-    console.log(data)
-    console.log(teamData)
+    // console.log(data)
+    // console.log(teamData)
     
     
     let teamName
@@ -34,7 +34,7 @@ let InfoDisplay = ({ data, xAttribute, yAttribute, teamDisplayed, colDisplayer, 
     sortedYData.sort((a,b) => {
         return (a[yAttribute] < b[yAttribute] ? -1 : 1)
     })
-    console.log('sortedYData: ', sortedYData)
+    // console.log('sortedYData: ', sortedYData)
 
     let sortedXData = [...data]
     

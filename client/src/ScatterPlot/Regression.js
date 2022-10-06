@@ -1,6 +1,6 @@
 let Regression = ({ data, cxArray, cyArray, xScale, yScale, setRegCor, setRegSlope, setRegInt }) => {
 
-    console.log('regression data: ', data)
+    // console.log('regression data: ', data)
 
     let getMean = (cArray) => {
         let sum = 0.0
@@ -41,11 +41,11 @@ let Regression = ({ data, cxArray, cyArray, xScale, yScale, setRegCor, setRegSlo
         return [correlation, standDevY, standDevX, slope, yInt]
     }
     let [correlation, standDevY, standDevX, slope, yInt] = getRegression(cxArray, cyArray)
-    console.log('correlation: ', correlation)
-    console.log('standDevY: ', standDevY)
-    console.log('standDevX: ', standDevX)
-    console.log('slope: ', slope)
-    console.log('yInt: ', yInt)
+    // console.log('correlation: ', correlation)
+    // console.log('standDevY: ', standDevY)
+    // console.log('standDevX: ', standDevX)
+    // console.log('slope: ', slope)
+    // console.log('yInt: ', yInt)
 
     let getMinMax = (cxArray) => {
         let min = 999999999999999
@@ -75,7 +75,7 @@ let Regression = ({ data, cxArray, cyArray, xScale, yScale, setRegCor, setRegSlo
     setRegInt(yInt)
     setRegCor(correlation)
 
-    console.log(yScale.ticks()[0])
+    // console.log(yScale.ticks()[0])
     let minX = xScale.ticks()[0]
     let minY = yScale.ticks()[0]
     

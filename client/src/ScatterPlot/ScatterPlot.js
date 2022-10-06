@@ -101,7 +101,7 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
         }
     })
 
-    console.log('attributes: ', attributes)
+    // console.log('attributes: ', attributes)
 
 
     const getLabel = (value) => {
@@ -134,7 +134,7 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
     // console.log(columns)
     // console.log(data)
 
-    console.log(extent(data, xValue))
+    // console.log(extent(data, xValue))
 
     let xpercentExtension = 0.01
     let ypercentExtension = 0.03
@@ -202,8 +202,8 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
     let handleTeamClick = (e) => {
         // console.log(e)
         // console.log(e.target.href.animVal)
-        console.log(e.target)
-        console.log(e.target.id)
+        // console.log(e.target)
+        // console.log(e.target.id)
         setTeamDisplayed(e.target.id)
     }
 

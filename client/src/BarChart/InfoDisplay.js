@@ -1,7 +1,14 @@
 let InfoDisplay = ({ data, yAttribute, teamDisplayed, colDisplayer, teamData, sortedData }) => {
 
-    console.log(data)
-    console.log(teamData)
+    if (!teamDisplayed) {
+        return(
+            <div className='barchart-team-display'>
+                <h2>Team Information:</h2>
+            </div>
+        )
+    }
+    // console.log(data)
+    // console.log(teamData)
     
     
     let teamName
@@ -38,7 +45,7 @@ let InfoDisplay = ({ data, yAttribute, teamDisplayed, colDisplayer, teamData, so
 
     return(
         <div className='barchart-team-display'>
-            <h2>Team Information</h2>
+            <h2>Team Information:</h2>
             <p>{teamName}</p>
             <p className='bar-p'>{conference} {division}</p>
             <p>{yVal} {colDisplayer(yAttribute)}</p>

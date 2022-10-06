@@ -2,7 +2,7 @@ const Switch = ({ toggle, setToggle }) => {
 
     let sliderChange = (e) => {
         setToggle(!toggle)
-        console.log('toggle: ', toggle)
+        // console.log('toggle: ', toggle)
     }
 
     return (

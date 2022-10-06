@@ -8,7 +8,7 @@ export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight
     let c = 0
 
     let handleTeamClick = (e) => {
-        console.log('id ', e.target.id)
+        // console.log('id ', e.target.id)
         setTeamDisplayed(e.target.id)
     }
 

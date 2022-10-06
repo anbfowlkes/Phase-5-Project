@@ -69,7 +69,7 @@ let BarChart = () => {
         }
     })
 
-    // console.log('attributes: ', attributes)
+    // console.log('Barchart Attributes: ', attributes)
 
     // the 'd' bellow represents one element (row) of the data
     //we're using a band scale which is useful for ordinal data

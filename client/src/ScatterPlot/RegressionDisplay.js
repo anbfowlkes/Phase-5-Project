@@ -39,11 +39,11 @@ let RegressionDisplay = ({ regCor, regInt, regSlope, xAxisLabel, yAxisLabel, col
         return [correlation, standDevY, standDevX, slope, yInt]
     }
     let [correlation, standDevY, standDevX, slope, yInt] = getRegression(cxArray, cyArray)
-    console.log('correlation: ', correlation)
-    console.log('standDevY: ', standDevY)
-    console.log('standDevX: ', standDevX)
-    console.log('slope: ', slope)
-    console.log('yInt: ', yInt)
+    // console.log('correlation: ', correlation)
+    // console.log('standDevY: ', standDevY)
+    // console.log('standDevX: ', standDevX)
+    // console.log('slope: ', slope)
+    // console.log('yInt: ', yInt)
 
     let getMinMax = (cxArray) => {
         let min = 999999999999999

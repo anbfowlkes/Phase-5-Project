@@ -1,6 +1,6 @@
 export const AxisBottom = ( { innerWidth, sortedData, xScale, yValue, yScale } ) => {
 
-    console.log(yScale(yValue))
+    // console.log(yScale(yValue))
     let count = 0
 
     return (
