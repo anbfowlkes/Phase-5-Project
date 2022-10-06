@@ -11,7 +11,9 @@ import Regression from './Regression'
 import RegressionDisplay from './RegressionDisplay'
 import InfoDisplay from './InfoDisplay'
 import Averages from './Averages'
+import AverageDisplay from './AverageDisplay'
 import ReactDropdown from 'react-dropdown'
+import Footer from '../Components/Footer'
 import Switch from './Switch'
 import nflshield from './nflshield.PNG'
 // import ToggleButton from 'react-toggle-button'
@@ -50,6 +52,10 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
     let [infoToggle, setInfoToggle] = useState(false)
 
     let [averagesToggle, setAveragesToggle] = useState(false)
+
+    let [xAvg, setXAvg] = useState(null)
+
+    let [yAvg, setYAvg] = useState(null)
 
     let [teamDisplayed, setTeamDisplayed] = useState(null)
 
@@ -204,7 +210,7 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
 
     return (
         <>
-            <div classname='scatterplot-shield'>
+            <div className='scatterplot-shield'>
                 <img className='scatterplot-nflshield' src='https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/1200px-National_Football_League_logo.svg.png' />
             </div>
             <div className='scatterPlotDiv'>
@@ -269,6 +275,8 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                                 yScale={yScale}
                                 innerHeight={innerHeight}
                                 innerWidth={innerWidth}
+                                setXAvg={setXAvg}
+                                setYAvg={setYAvg}
                             />  
                             : null}
 
@@ -349,58 +357,68 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
 
             </div>
 
-            <div className='scatterplot-info-switch'>
-                <Switch toggle={infoToggle} setToggle={setInfoToggle} />
-            </div>
+
             
-            {infoToggle? 
+            {/* <div className='regression-box'>
+                    <div className='reg-head'>
+                        <h2>{'Regression Analysis:'}</h2>
+                    </div>
+                        
+                    <RegressionDisplay 
+                        regCor={regCor} 
+                        regSlope={regSlope} 
+                        regInt={regInt} 
+                        xAxisLabel={xAxisLabel}
+                        yAxisLabel={yAxisLabel}
+                        colDisplayer={colDisplayer}
+                    />
+                    
+                </div> */}
+            
             <div className='scatterplot-info-display-outer'>
                 
                 
                 
-                <div className='regressionBox'>
-                    <div className='regHead'>
-                        <h3>{'Regression Analysis:'}</h3>
-                        {/* <Switch toggle={regToggle} setToggle={setRegToggle} /> */}
-                    </div>
-                    <div className='regDispDiv'>
+                <div className='regression-box'>
+                    <div className='reg-head'>
                         
-                        <RegressionDisplay 
-                            regCor={regCor} 
-                            regSlope={regSlope} 
-                            regInt={regInt} 
-                            xAxisLabel={xAxisLabel}
-                            yAxisLabel={yAxisLabel}
-                            colDisplayer={colDisplayer}
-                        />
                     </div>
+                        
+                    <RegressionDisplay 
+                        regCor={regCor} 
+                        regSlope={regSlope} 
+                        regInt={regInt} 
+                        xAxisLabel={xAxisLabel}
+                        yAxisLabel={yAxisLabel}
+                        colDisplayer={colDisplayer}
+                    />
+                    
                 </div>
 
                 <div className='scatterplot-averages'>
-
-                </div>
-
-                {/* <div>
-                    <button onClick={addToFavorites}>Add To Favorites</button>
-                </div> */}
-
-                <div className='scatterplot-info-display'>
-                     
-                    <InfoDisplay 
+                    <AverageDisplay 
+                        xAvg={xAvg} 
+                        yAvg={yAvg} 
                         xAttribute={xAttribute}
                         yAttribute={yAttribute}
-                        data={data}
-                        teamDisplayed={teamDisplayed}
                         colDisplayer={colDisplayer}
-                        teamData={teamData}
                     />
                 </div>
-                
+                     
+                <InfoDisplay 
+                    xAttribute={xAttribute}
+                    yAttribute={yAttribute}
+                    data={data}
+                    teamDisplayed={teamDisplayed}
+                    colDisplayer={colDisplayer}
+                    teamData={teamData}
+                />
             </div>
-            : null}
+
             <div className='scatterplot-bottom'>
 
             </div>
+            <Footer />
         </>
     )
 }

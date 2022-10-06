@@ -31,7 +31,8 @@ let InfoDisplay = ({ data, xAttribute, yAttribute, teamDisplayed, colDisplayer, 
 
 
     return(
-        <div className='scatterplot-inner-display' style={{backgroundColor: `#${color}`}}>
+        <div className='team-info'>
+            <h2>Team Information:</h2>
             <p>{teamName}</p>
             <p>{xVal}</p>
             <p>{yVal}</p>

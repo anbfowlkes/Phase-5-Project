@@ -159,6 +159,7 @@ input:checked + .slider:before {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap: 2em;
 }
 
 /* .scatterplot-g {
@@ -173,11 +174,11 @@ input:checked + .slider:before {
     margin-bottom: 2em;
 }
 
-.regressionBox {
+.regression-box {
     height: 35em;
     width: 30em;
     border: solid black;
-    background-color: #8f7835;
+    background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -186,25 +187,39 @@ input:checked + .slider:before {
     /* overflow: hidden; */
 }
 
+.reg-head {
+    margin-top: -11em;
+}
+
+.reg-head > h2 {
+    font-size: 2.1em;
+}
+
+.reg-info {
+    font-size: 1.4em;
+
+}
+
+.avg-info {
+    font-size: 1.4em;
+    text-align: center;
+}
+
 .scatterplot-averages {
+    background-color: white;
     width: 30em;
     height: 35em;
     border: solid black;
 }
 
 .scatterplot-bottom {
-    margin-bottom: 40em;
+    margin-bottom: 5em;
 }
 
-.scatterplot-info-display {
+.team-info {
     width: 30em;
     height: 35em;
     border: solid black;
-}
-
-.scatterplot-inner-display {
-    width: 100%;
-    height: 100%;
-    border: solid black;
-    color: white;
+    background-color: white;
+    text-align: center;
 }

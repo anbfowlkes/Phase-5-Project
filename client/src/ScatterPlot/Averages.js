@@ -1,4 +1,4 @@
-let Averages = ({ cxArray, cyArray, xScale, yScale, innerHeight, innerWidth }) => {
+let Averages = ({ cxArray, cyArray, xScale, yScale, innerHeight, innerWidth, setXAvg, setYAvg }) => {
 
 
     let getMean = (cArray) => {
@@ -12,7 +12,8 @@ let Averages = ({ cxArray, cyArray, xScale, yScale, innerHeight, innerWidth }) =
     let xMean = getMean(cxArray)
     let yMean = getMean(cyArray)
 
-
+    setXAvg(xMean)
+    setYAvg(yMean)
 
     return (
         <>
