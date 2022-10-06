@@ -1,21 +1,38 @@
-.tick line {
+/* .tick line {
     stroke: #C0C0BB;
 }
 
 .tick text {
     fill: #635F5D;
     font-family: 'Poppins'
-}
+} */
 
 /* .mark {
     fill: #137B80
 } */
 
+.barchart-shield {
+    margin-left: 2.5em;
+    /* width: 6.25em; */
+}
+
+.barchart-nflshield {
+    width: 10em;
+    position: absolute;
+    top: 3.5em;
+}
+
+.barchart-outer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .barchart-axis-label {
     font-size: 2.2em;
     fill: #635F5D
 }
-
 
 .Dropdown-root {
     width: 25em;
@@ -23,9 +40,17 @@
     font-size: 1.2em;
 }
 
+.Dropdown-root:hover {
+    cursor: pointer;
+}
+
 .Dropdown-menu {
     max-height: 31.25em;
     text-align: left;
+}
+
+.Dropdown-menu:hover {
+    cursor: pointer;
 }
 
 .barchart-dropdown-label {
@@ -43,19 +68,79 @@
     /* border: solid black; */
 }
 
+#Dropdown-control:hover {
+    cursor: pointer;
+}
+
 .barchart-svg {
-    margin-left: 5%;
+    margin-left: 0em;
+    margin-right: 1em;
 }
 
-.scatterplot-info-display {
-    width: 31.25em;
-    height: 31.25em;
-    border: solid black;
+.barchart-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.scatterplot-inner-display {
-    width: 31.25em;
-    height: 31.25em;
+.barchart-control-panel {
+    margin-left: 0em;
+    margin-top: -7em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.barchart-rectangle:hover {
+    cursor: pointer;
+}
+
+.barchart-averages-box {
+    height: 32em;
+    width: 30em;
     border: solid black;
-    color: white;
+    background-color: white;
+}
+
+.barchart-info-box {
+    height: 32em;
+    width: 30em;
+    border: solid black;
+    background-color: white;
+}
+
+.barchart-info-outer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    margin-bottom: 2em;
+    margin-top: 4em;
+    text-align: center;
+}
+
+.barchart-avg-info {
+    font-size: 1.4em;
+}
+
+.bar-p {
+    margin-bottom: 2em;
+}
+
+.barchart-team-display {
+    font-size: 1.4em;
+}
+
+.barchart-team-display img {
+    width: 8em;
+    margin-top: 0em;
+}
+
+.barchart-disclaimer {
+    position: absolute;
+    margin-bottom: -40em;
+    font-size: 1.1em;
 }

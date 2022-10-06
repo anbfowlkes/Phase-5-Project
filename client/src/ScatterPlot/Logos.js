@@ -34,6 +34,7 @@ const Logos = ( { data, teamData, xScale, yScale, xValue, yValue, handleTeamClic
                         // href='https://upload.wikimedia.org/wikipedia/en/7/77/Buffalo_Bills_logo.svg'
                         onClick={handleTeamClick}
                         href={logoUrl}
+                        className='scatterplot-circles'
                         // className='mark'
                         transform={`translate(${-25} ${-20})`}
                         x={xScale(xValue(d))}

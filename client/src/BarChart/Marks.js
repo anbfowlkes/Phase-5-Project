@@ -1,5 +1,5 @@
 import { useState } from 'react'
-export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight, teamData, setTeamDisplayed } ) => {
+export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight, teamData, setTeamDisplayed, colorToggle } ) => {
 
     let count = 0
     let [tickValue, setTickValue] = useState(null)
@@ -17,7 +17,9 @@ export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight
             // let tickValue = xScale.domain()[count]
             // setTickValue(xScale.domain()[count])
             let team = teams.find((item) => item.Key == d.Team)
-            let color = team.PrimaryColor
+            let color
+            colorToggle ? color = team.SecondaryColor : color = team.PrimaryColor
+            
 
             count++
             
@@ -36,7 +38,7 @@ export const Marks = ( { sortedData, xScale, yScale, xValue, yValue, innerHeight
                         id={d.Team}
                         onClick={handleTeamClick}
                         style={{fill: `#${color}`}}
-                        className='mark'
+                        className='barchart-rectangle'
                         key={xValue(d)}
                         x={xScale(xValue(d))} 
                         y={yScale(yValue(d))}

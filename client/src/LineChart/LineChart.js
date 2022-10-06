@@ -8,6 +8,8 @@ import { Marks } from './Marks'
 import Logos from './Logos'
 import Paths from './Paths'
 import Switch from './Switch'
+import ShowGame from './ShowGame'
+import Footer from '../Components/Footer'
 import './LineChart.css'
 import ReactDropdown from 'react-dropdown'
 
@@ -35,6 +37,8 @@ let LineChart = () => {
     let [labelToggle, setLabelToggle] = useState(false)
 
     let [teamIndicated, setTeamIndicated] = useState(null)
+
+    let [objClicked, setObjClicked] = useState(null)
 
     if (!data || !teamData || !columns) {
         return <pre>'Loading...'</pre>
@@ -98,6 +102,7 @@ let LineChart = () => {
             && col != 'OpponentID'
             && col != 'Opponent'
             && col != 'HomeOrAway'
+            && col != 'TeamGameID'
             ) {
             attributes.push({ value: col, label: colDisplayer(col) })
         }
@@ -122,7 +127,7 @@ let LineChart = () => {
     const xAxisLabel = 'Weeks'
     const yAxisLabel = colDisplayer(yAttribute)
 
-    const xAxisLabelOffset = 55
+    const xAxisLabelOffset = 65
     const yAxisLabelOffset = 50
 
     console.log('ticks console.log: ', xScale.ticks())
@@ -166,7 +171,11 @@ let LineChart = () => {
     return (
 
         <>
-            
+
+            <div className='linechart-shield'>
+                <img className='linechart-nflshield' src='https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/1200px-National_Football_League_logo.svg.png' />
+            </div>
+        
             <div className='linechart-menu-container'>
             
                 <div className='lc-span'>
@@ -247,6 +256,7 @@ let LineChart = () => {
                                 selectedTeams={selectedTeams}
                                 yAttribute={yAttribute}
                                 teamData={teamData}
+                                setObjClicked={setObjClicked}
                             />
                             : 
                             <Logos 
@@ -257,6 +267,7 @@ let LineChart = () => {
                                 xValue={xValue}
                                 yValue={yValue} 
                                 selectedTeams={selectedTeams}
+                                setObjClicked={setObjClicked}
                                 // handleTeamClick={handleTeamClick}
                             />
                             }
@@ -294,6 +305,9 @@ let LineChart = () => {
                         <Switch toggle={labelToggle} setToggle={setLabelToggle} />
                     </div> */}
                     
+                    <div className='linechart-disclaimer'>
+                        * Weekly Totals
+                    </div>
                 </div>
             </div>
 
@@ -493,6 +507,19 @@ let LineChart = () => {
                     </label>
                 </div>
             </div>
+
+            <div className='linechart-info'>
+                <div className='game-info'>
+                    <ShowGame 
+                        objClicked={objClicked}
+                        data={data}
+                        teamData={teamData}
+                        yAttribute={yAttribute}
+                        colDisplayer={colDisplayer}
+                    />
+                </div>
+            </div>
+            <Footer />
         </>
     )
 }

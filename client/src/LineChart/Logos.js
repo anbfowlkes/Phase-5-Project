@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const Logos = ( { data, selectedTeams, teamData, xScale, yScale, xValue, yValue } ) => {
+const Logos = ( { data, selectedTeams, teamData, xScale, yScale, xValue, yValue, setObjClicked } ) => {
 
     let logoUrls = []
 
@@ -62,12 +62,13 @@ const Logos = ( { data, selectedTeams, teamData, xScale, yScale, xValue, yValue 
                                 // <image href='https://upload.wikimedia.org/wikipedia/en/7/77/Buffalo_Bills_logo.svg' />
                         
                             <image 
+                                onClick={() => setObjClicked(d)}
                                 className='line-logos'
                                 // href='https://upload.wikimedia.org/wikipedia/en/7/77/Buffalo_Bills_logo.svg'
                                 // onClick={handleTeamClick}
                                 href={logoUrl}
                                 // className='mark'
-                                transform={`translate(${-15} ${-12})`}
+                                transform={`translate(${-15} ${-11})`}
                                 x={xScale(xValue(d))}
                                 y={yScale(yValue(d))}
                                 width={30}

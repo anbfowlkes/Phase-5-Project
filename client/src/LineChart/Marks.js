@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { line, curveNatural } from 'd3'
-export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue, yValue, teamData, circleRadius } ) => {
+export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue, yValue, teamData, setObjClicked } ) => {
     
 
 
@@ -17,7 +17,6 @@ export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue
             }
         })
     }
-
 
 
 
@@ -50,6 +49,10 @@ export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue
 
     let myY = (d) => d.info[yAttribute]
     
+    let circleClick = (e) => {
+        console.log(e.target)
+        // console.log(d)
+    }
     
     return (
         <>
@@ -103,10 +106,11 @@ export const Marks = ( { data, selectedTeams, yAttribute, xScale, yScale, xValue
                                                 .curve(curveNatural)(arr)} 
                                             /> */}
                                         <circle
+                                            onClick={() => setObjClicked(d)}
                                             style={{fill: `#${color}`, zIndex: '-2'}}
                                             cx={xScale(d.week)}
                                             cy={yScale(myY(d))} 
-                                            r={6}
+                                            r={8}
                                         >
                                             {/* <title>{xValue(d)}</title> */}
                                         </circle>

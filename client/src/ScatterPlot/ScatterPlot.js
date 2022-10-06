@@ -296,7 +296,20 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                             >
                                 {yAxisLabel}
                             </text>
-                            
+
+                            {regToggle ? 
+                                <Regression 
+                                    data={data} 
+                                    cxArray={cxArray} 
+                                    cyArray={cyArray} 
+                                    xScale={xScale}
+                                    yScale={yScale}
+                                    setRegCor={setRegCor}
+                                    setRegSlope={setRegSlope}
+                                    setRegInt={setRegInt}
+                                /> : null
+                            }
+
                             {logoToggle ? <Marks 
                                 data={data}
                                 teamData={teamData}
@@ -317,19 +330,6 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                                     innerHeight={innerHeight}
                                     handleTeamClick={handleTeamClick}
                             />}
-
-                            {regToggle ? 
-                                <Regression 
-                                    data={data} 
-                                    cxArray={cxArray} 
-                                    cyArray={cyArray} 
-                                    xScale={xScale}
-                                    yScale={yScale}
-                                    setRegCor={setRegCor}
-                                    setRegSlope={setRegSlope}
-                                    setRegInt={setRegInt}
-                                /> : null
-                            }
 
                         </g>
 
@@ -352,6 +352,10 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                     <div className='scatterplot-panel'>
                         <h3>Regression</h3>
                         <Switch toggle={regToggle} setToggle={setRegToggle} />
+                    </div>
+
+                    <div className='scatterplot-disclaimer'>
+                        * Season Totals
                     </div>
                 </div>
 
@@ -391,6 +395,14 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                         xAxisLabel={xAxisLabel}
                         yAxisLabel={yAxisLabel}
                         colDisplayer={colDisplayer}
+                        data={data} 
+                        cxArray={cxArray} 
+                        cyArray={cyArray} 
+                        xScale={xScale}
+                        yScale={yScale}
+                        setRegCor={setRegCor}
+                        setRegSlope={setRegSlope}
+                        setRegInt={setRegInt}
                     />
                     
                 </div>
@@ -402,17 +414,27 @@ let ScatterPlot = ({ inFavorites, xAxisFav, yAxisFav }) => {
                         xAttribute={xAttribute}
                         yAttribute={yAttribute}
                         colDisplayer={colDisplayer}
+                        cxArray={cxArray} 
+                        cyArray={cyArray} 
+                        xScale={xScale}
+                        yScale={yScale}
+                        innerHeight={innerHeight}
+                        innerWidth={innerWidth}
+                        setXAvg={setXAvg}
+                        setYAvg={setYAvg}
                     />
                 </div>
-                     
-                <InfoDisplay 
-                    xAttribute={xAttribute}
-                    yAttribute={yAttribute}
-                    data={data}
-                    teamDisplayed={teamDisplayed}
-                    colDisplayer={colDisplayer}
-                    teamData={teamData}
-                />
+                <div className='info-div-outer'>
+                    <InfoDisplay 
+                        xAttribute={xAttribute}
+                        yAttribute={yAttribute}
+                        data={data}
+                        teamDisplayed={teamDisplayed}
+                        colDisplayer={colDisplayer}
+                        teamData={teamData}
+                    />
+                </div>
+                
             </div>
 
             <div className='scatterplot-bottom'>

@@ -1,15 +1,17 @@
 import { useState, useCallback, useEffect } from 'react'
-import { csv, scaleBand, scaleLinear, max, format } from 'd3'
+import { csv, scaleBand, scaleLinear, max, format, extent } from 'd3'
 import { useData } from './useData'
 import { AxisBottom } from './AxisBottom'
 import { AxisLeft } from './AxisLeft'
 import { Marks } from './Marks'
-import Averages from './Averages'
+import Average from './Average'
+import AverageDisplay from './AverageDisplay'
 import Logos from './Logos'
 import './BarChart.css'
 import Dropdown from './Dropdown'
 import InfoDisplay from './InfoDisplay'
 import Switch from './Switch'
+import Footer from '../Components/Footer'
 import ReactDropdown from 'react-dropdown'
 
 
@@ -26,6 +28,12 @@ let BarChart = () => {
     let [teamDisplayed, setTeamDisplayed] = useState(null)
 
     let [logoToggle, setLogoToggle] = useState(false)
+
+    let [extremeToggle, setExtremeToggle] = useState(false)
+
+    let [colorToggle, setColorToggle] = useState(true)
+
+    let [avgToggle, setAvgToggle] = useState(false)
 
     let width = (1.25) * 1200
     let height = (1.25) * 600
@@ -83,10 +91,34 @@ let BarChart = () => {
         .range([innerWidth, 0])
         .paddingInner(0.15)
 
-    let yScale = scaleLinear()
+    let ypercentExtension = 0.03
+
+    let yDomainSetter = () => {
+        let arr = extent(data, yValue)
+        arr[0] = arr[0] - (ypercentExtension)*arr[0]
+        // arr[1] = arr[1] + (ypercentExtension)*arr[1]
+        // console.log(arr)
+        return(arr)
+    }
+
+    let yScale
+
+    if (!extremeToggle) {
+        yScale = scaleLinear()
         .domain([0, max(data, yValue)])
         .range([innerHeight, 0])
+        .nice()    
+    } else {
+        yScale = scaleLinear()
+        .domain(yDomainSetter())
+        .range([innerHeight, 0])
         .nice()
+    }
+
+    // let yScale = scaleLinear()
+    //     .domain(yDomainSetter())
+    //     .range([innerHeight, 0])
+    //     .nice()
     
     // console.log(xScale.ticks())
     // console.log(yScale.domain())
@@ -111,6 +143,10 @@ let BarChart = () => {
     return (
         <>
 
+            <div className='barchart-shield'>
+                <img className='barchart-nflshield' src='https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/1200px-National_Football_League_logo.svg.png' />
+            </div>
+
             <div className='barchart-menus-container'>
                 <div className='single-menu'>
                     <div>
@@ -126,96 +162,130 @@ let BarChart = () => {
                 </div>
 
             </div>
+            <div className='barchart-outer-container'>
+                <svg className='barchart-svg' width={width} height={height} >
 
-            <svg className='barchart-svg' width={width} height={height} >
-
-                <g transform={`translate(${margin.left},${margin.top})`}>
+                    <g transform={`translate(${margin.left},${margin.top})`}>
 
 
-                    {logoToggle ? 
-                    <Logos 
+                        {logoToggle ? 
+                        <Logos 
+                            yScale={yScale} 
+                            yValue={yValue} 
+                            xScale={xScale} 
+                            innerHeight={innerHeight}
+                            sortedData={sortedData}
+                            innerWidth={innerWidth}
+                            teamData={teamData}
+                        />
+                        :
+                        <AxisBottom 
+                            yScale={yScale} 
+                            yValue={yValue} 
+                            xScale={xScale} 
+                            innerHeight={innerHeight}
+                            sortedData={sortedData}
+                            innerWidth={innerWidth}
+                        />
+                        }
+
+                        <AxisLeft 
                         yScale={yScale} 
-                        yValue={yValue} 
-                        xScale={xScale} 
-                        innerHeight={innerHeight}
-                        sortedData={sortedData}
+                        innerHeight={innerHeight} 
+                        tickFormat={numFormatter} 
                         innerWidth={innerWidth}
-                        teamData={teamData}
-                    />
-                    :
-                    <AxisBottom 
-                        yScale={yScale} 
-                        yValue={yValue} 
-                        xScale={xScale} 
-                        innerHeight={innerHeight}
-                        sortedData={sortedData}
-                        innerWidth={innerWidth}
-                    />
-                    }
+                        />
 
-                    <AxisLeft 
-                    yScale={yScale} 
-                    innerHeight={innerHeight} 
-                    tickFormat={numFormatter} 
-                    innerWidth={innerWidth}
-                    />
+                        <text 
+                            className='barchart-axis-label'
+                            x={innerWidth/2} 
+                            y={innerHeight+55} 
+                            textAnchor='middle'
+                        >Teams</text>
 
-                    <text 
-                        className='barchart-axis-label'
-                        x={innerWidth/2} 
-                        y={innerHeight+55} 
-                        textAnchor='middle'
-                    >Teams</text>
-
-                    <text 
-                        className='scatterplot-axis-label-left'
-                        textAnchor='middle'
-                        transform={`translate(${-90}, ${innerHeight/2}) rotate(-90)`}     
-                    >
-                        {colDisplayer(yAttribute)}
-                    </text>
-
-                    <Averages
-                        sortedData={sortedData}
-                        xScale={xScale} 
-                        yScale={yScale} 
-                        xValue={xValue} 
-                        yValue={yValue}
-                        innerHeight={innerHeight}
-                    />
-                    
-                    <Marks 
-                        sortedData={sortedData} 
-                        xScale={xScale} 
-                        yScale={yScale} 
-                        xValue={xValue} 
-                        yValue={yValue}
-                        innerHeight={innerHeight}
-                        teamData={teamData}
-                        setTeamDisplayed={setTeamDisplayed}
-                    />
-
-                </g>
-
-            </svg>
-
-            {/* <Switch toggle={logoToggle} setToggle={setLogoToggle} /> */}
-            
-
-
-
-            <div className='scatterplot-info-display'>
+                        <text 
+                            className='scatterplot-axis-label-left'
+                            textAnchor='middle'
+                            transform={`translate(${-90}, ${innerHeight/2}) rotate(-90)`}     
+                        >
+                            {colDisplayer(yAttribute)}
+                        </text>
+                        
+                        {avgToggle ? 
+                        <Average
+                            sortedData={sortedData}
+                            xScale={xScale} 
+                            yScale={yScale} 
+                            xValue={xValue} 
+                            yValue={yValue}
+                            innerWidth={innerWidth}
+                        />
+                        : null}
                 
-                
-                <InfoDisplay 
-                    yAttribute={yAttribute}
-                    data={data}
-                    teamDisplayed={teamDisplayed}
-                    colDisplayer={colDisplayer}
-                    teamData={teamData}
-                />
+                        <Marks 
+                            sortedData={sortedData} 
+                            xScale={xScale} 
+                            yScale={yScale} 
+                            xValue={xValue} 
+                            yValue={yValue}
+                            innerHeight={innerHeight}
+                            teamData={teamData}
+                            setTeamDisplayed={setTeamDisplayed}
+                            colorToggle={colorToggle}
+                        />
+
+                    </g>
+
+                </svg>
+
+                <div className='barchart-control-panel'>
+                    <div className='barchart-panel'>
+                        <h3>Extreme View</h3>
+                        <Switch toggle={extremeToggle} setToggle={setExtremeToggle} />
+                    </div>
+
+                    <div className='barchart-panel'>
+                        <h3>Show Average</h3>
+                        <Switch toggle={avgToggle} setToggle={setAvgToggle} />
+                    </div>
+
+                    <div className='barchart-panel'>
+                        <h3>Change Colors</h3>
+                        <Switch toggle={colorToggle} setToggle={setColorToggle} />
+                    </div>
+
+                    <div className='barchart-disclaimer'>
+                        * Season Totals
+                    </div>
+                </div>
+
             </div>
-            
+
+            <div className='barchart-info-outer'>
+                
+                <div className='barchart-averages-box'>
+                    <AverageDisplay 
+                    sortedData={sortedData}
+                    yValue={yValue}
+                    teamData={teamData}
+                    yAttribute={yAttribute}
+                    colDisplayer={colDisplayer}
+                    />
+                </div>
+
+                <div className='barchart-info-box'>
+                    <InfoDisplay 
+                        yAttribute={yAttribute}
+                        data={data}
+                        teamDisplayed={teamDisplayed}
+                        colDisplayer={colDisplayer}
+                        teamData={teamData}
+                        sortedData={sortedData}
+                    />
+                </div>
+        
+            </div>
+            <Footer />
         </>
     )
 }

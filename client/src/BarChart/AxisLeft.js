@@ -8,7 +8,7 @@ export const AxisLeft = ( {yScale, innerHeight, innerWidth, tickFormat} ) => {
                     <g className='tick' key={tickValue} >
                         <line y1={yScale(tickValue)} x2={innerWidth} y2={yScale(tickValue)} />
                         {parseInt(tickValue) == tickValue ? 
-                        <text style={{textAnchor: 'middle'}} x={-40} y={yScale(tickValue)}>{parseInt(tickFormat(tickValue))}</text>
+                        <text style={{textAnchor: 'middle'}} x={-40} y={yScale(tickValue)}>{parseInt(tickValue)}</text>
                         : null
                         }
                         

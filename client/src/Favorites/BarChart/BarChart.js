@@ -4,6 +4,7 @@ import { useData } from './useData'
 import { AxisBottom } from './AxisBottom'
 import { AxisLeft } from './AxisLeft'
 import { Marks } from './Marks'
+import Footer from '../Components/Footer'
 import './BarChart.css'
 import Dropdown from './Dropdown'
 import ReactDropdown from 'react-dropdown'
@@ -136,7 +137,7 @@ let BarChart = ({ yAxis }) => {
 
             </svg>
 
-            
+            <Footer />            
         </>
     )
 }

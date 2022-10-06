@@ -1,11 +1,11 @@
-.tick line {
+/* .tick line {
     stroke: #C0C0BB;
 }
 
 .tick text {
     fill: #635F5D;
     font-family: 'Poppins'
-}
+} */
 
 /* .mark {
     fill: #137B80
@@ -59,7 +59,7 @@
 }
 
 .regressionLine {
-    stroke: #9bb0ae;
+    stroke: #677472;
     stroke-width: 5;
 }
 
@@ -129,13 +129,14 @@ input:checked + .slider:before {
 }
 
 .scatterplot-shield {
-    width: 6.25em;
+    margin-left: 5em;
+    /* width: 6.25em; */
 }
 
 .scatterplot-nflshield {
-    width: 6.25em;
+    width: 10em;
     position: absolute;
-    top: 3.1em;
+    top: 3.5em;
 }
 
 .scatterplot-control-panel {
@@ -201,6 +202,7 @@ input:checked + .slider:before {
 }
 
 .avg-info {
+    margin-top: -0.3em;
     font-size: 1.4em;
     text-align: center;
 }
@@ -216,10 +218,28 @@ input:checked + .slider:before {
     margin-bottom: 5em;
 }
 
-.team-info {
+.info-div-outer {
     width: 30em;
     height: 35em;
     border: solid black;
     background-color: white;
     text-align: center;
+}
+
+.team-info {
+    font-size: 1.4em;
+}
+
+.team-info img {
+    width: 5.8em;
+}
+
+.scatterplot-circles:hover {
+    cursor: pointer;
+}
+
+.scatterplot-disclaimer {
+    position: absolute;
+    margin-bottom: -42em;
+    font-size: 1.1em;
 }

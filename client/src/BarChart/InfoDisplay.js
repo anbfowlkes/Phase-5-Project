@@ -1,4 +1,4 @@
-let InfoDisplay = ({ data, yAttribute, teamDisplayed, colDisplayer, teamData }) => {
+let InfoDisplay = ({ data, yAttribute, teamDisplayed, colDisplayer, teamData, sortedData }) => {
 
     console.log(data)
     console.log(teamData)
@@ -28,12 +28,22 @@ let InfoDisplay = ({ data, yAttribute, teamDisplayed, colDisplayer, teamData }) 
         }
     })
 
+    let rank
+    for (let i = 0; i < sortedData.length; i++) {
+        if (teamDisplayed == sortedData[i].Team) {
+            rank = 32 - i
+        }
+    }
+
 
     return(
-        <div className='scatterplot-inner-display' style={{backgroundColor: `#${color}`}}>
-            <img src={logo} />
+        <div className='barchart-team-display'>
+            <h2>Team Information</h2>
             <p>{teamName}</p>
-            <p>{yVal}</p>
+            <p className='bar-p'>{conference} {division}</p>
+            <p>{yVal} {colDisplayer(yAttribute)}</p>
+            <p>Rank: {rank}</p>
+            <img src={logo} />
         </div>
     )
 }

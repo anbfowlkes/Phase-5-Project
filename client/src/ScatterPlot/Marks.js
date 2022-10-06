@@ -34,14 +34,15 @@ const Marks = ( { data, teamData, xScale, yScale, xValue, yValue, handleTeamClic
                 //     }
                 //     console.log(color)
                 // })
-                let color = teams[count].PrimaryColor
+                let color = teams[count].SecondaryColor
                 // console.log(color)
                 count++
                 return (
                 <circle 
+                    className='scatterplot-circles'
                     onClick={handleTeamClick}
                     style={{fill: `#${color}`}}
-                    className='mark'
+                    // className='mark'
                     cx={xScale(xValue(d))}
                     cy={yScale(yValue(d))}
                     r={10}
