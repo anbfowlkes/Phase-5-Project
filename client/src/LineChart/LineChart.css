@@ -167,18 +167,41 @@
     align-items: center;
     margin-bottom: 2em;
     margin-top: -0.5em;
+    margin-left: -8em;
+    gap: 2em;
 }
 
 .game-info {
     width: 30em;
-    height: 25em;
+    height: 28em;
     background-color: white;
     border: solid black;
     text-align: center;
-    
 }
 
 .showgame-div {
     text-align: center;
     font-size: 1.4em;
+}
+
+path:hover {
+    cursor: pointer;
+}
+
+.show-season {
+    text-align: center;
+    font-size: 1.4em;
+}
+
+.season-info {
+    width: 30em;
+    height: 28em;
+    background-color: white;
+    border: solid black;
+    text-align: center;
+}
+
+.show-season img {
+    margin-top: 0.5em;
+    width: 6em;
 }

@@ -9,6 +9,7 @@ import Logos from './Logos'
 import Paths from './Paths'
 import Switch from './Switch'
 import ShowGame from './ShowGame'
+import SeasonInfo from './SeasonInfo'
 import Footer from '../Components/Footer'
 import './LineChart.css'
 import ReactDropdown from 'react-dropdown'
@@ -16,7 +17,7 @@ import ReactDropdown from 'react-dropdown'
 // number 11
 let LineChart = () => {
 
-    let { data, columns, teamData } = useData()
+    let { data, columns, teamData, seasonData } = useData()
 
     let width = 1500
     let height = 600
@@ -40,9 +41,11 @@ let LineChart = () => {
 
     let [objClicked, setObjClicked] = useState(null)
 
-    if (!data || !teamData || !columns) {
+    if (!data || !teamData || !columns || !seasonData) {
         return <pre>'Loading...'</pre>
     }
+
+    console.log('seasonData: ', seasonData)
 
     // the 'd' bellow represents one element (row) of the data
     //we're using a band scale which is useful for ordinal data
@@ -509,6 +512,17 @@ let LineChart = () => {
             </div>
 
             <div className='linechart-info'>
+
+                <div className='season-info'>
+                    <SeasonInfo 
+                        objClicked={objClicked}
+                        seasonData={seasonData}
+                        teamData={teamData}
+                        yAttribute={yAttribute}
+                        colDisplayer={colDisplayer}
+                    />
+                </div>
+
                 <div className='game-info'>
                     <ShowGame 
                         objClicked={objClicked}
@@ -518,6 +532,7 @@ let LineChart = () => {
                         colDisplayer={colDisplayer}
                     />
                 </div>
+
             </div>
             <Footer />
         </>

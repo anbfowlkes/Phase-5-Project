@@ -52,8 +52,8 @@ let ShowGame = ({ data, teamData, objClicked, colDisplayer, yAttribute }) => {
             <h2>Game Information:</h2>
             <p>{teamName} vs {oppName}</p>
             <p>Week {week}</p>
-            <p>Home Team: {homeTeam}</p>
-            <p className='bar-p'>Score: {team} {teamScore}, {opponent} {oppScore}</p>
+            <p className='bar-p'>Home Team: {homeTeam}</p>
+            <p className='bar-p'>Score: {team} {teamScore} - {opponent} {oppScore}</p>
             <p>{teamName} {colDisplayer(yAttribute)}:</p>
             <p>{objClicked.info[yAttribute]}</p>
         </div>

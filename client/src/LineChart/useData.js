@@ -10,12 +10,16 @@ export const useData = () => {
     let jsonUrl = 'http://localhost:2000/teamgames'
 
     let jsonUrl2 = 'http://localhost:2000/teams'
+
+    let jsonUrl3 = 'http://localhost:2000/get'
     
     let [data, setData] = useState(null)
 
     let [columns, setColumns] = useState(null)
 
     let [teamData, setTeamData] = useState(null)
+
+    let [seasonData, setSeasonData] = useState(null)
 
 
     let getColumns = (data) => {
@@ -47,5 +51,11 @@ export const useData = () => {
         })
     },[])
 
-    return {data: data, columns: columns, teamData: teamData}
+    useEffect(() => {
+        json(jsonUrl3).then(data => {
+            setSeasonData(data)
+        })
+    },[])
+
+    return {data: data, columns: columns, teamData: teamData, seasonData: seasonData}
 }

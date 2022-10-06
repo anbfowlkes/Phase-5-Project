@@ -28,6 +28,8 @@ function App() {
 
   let [inHome, setInHome] = useState(false)
 
+  let [seasonData, setSeasonData] = useState(null)
+
   if (inHome == 0) {
     return (
       <Home setInHome={setInHome}/>
@@ -54,7 +56,7 @@ function App() {
               {/* <Route path="/" element={ <LandingPage user={user}/>} /> */}
               {/* <Route path='/home' element={<Home />} /> */}
               <Route path='/' element={<ChooseGraph setInHome={setInHome} />} />
-              <Route path='/scatterplot' element={<ScatterPlot inFavorites={false} />} />
+              <Route path='/scatterplot' element={<ScatterPlot seasonData={seasonData} inFavorites={false} />} />
               <Route path='/barchart' element={<BarChart inFavorites={false} />} />
               <Route path='/linechart' element={<LineChart inFavorites={false} />} />
               {/* <Route path='/favorites' element={<Favorites />} /> */}
