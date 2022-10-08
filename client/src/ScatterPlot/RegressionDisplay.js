@@ -114,7 +114,7 @@ let RegressionDisplay = ({ regCor, regInt, regSlope, xAxisLabel, yAxisLabel, col
         <div className='reg-info'>
             <h2>{'Regression Analysis:'}</h2>
             <p>{`Correlation Coefficient: r = ${regCor}`}</p>
-            <p>{`This is a ${strength}, ${direction} association between ${xAxisLabel.toLowerCase()} and ${yAxisLabel.toLowerCase()}.`}</p>
+            <p>{`This is a ${strength}, ${direction} correlation between ${xAxisLabel.toLowerCase()} and ${yAxisLabel.toLowerCase()}.`}</p>
             <p>{'Line of Best Fit:'}</p>
             <p>{`y = ${regSlope.toFixed(2)}x + ${regInt.toFixed(2)}`}</p>
             {/* <p>{`(${yAxisLabel}) = (${regSlope})(${xAxisLabel}) + ${regInt}`}</p> */}
