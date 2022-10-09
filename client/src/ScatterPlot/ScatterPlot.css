@@ -59,9 +59,10 @@
 }
 
 .regressionLine {
-    stroke: #677472;
+    stroke: #101010;
     stroke-width: 5;
 }
+
 
 .menuAndScatterPlot {
     display: flex;
