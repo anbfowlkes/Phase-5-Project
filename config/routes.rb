@@ -20,4 +20,6 @@ Rails.application.routes.draw do
 
   get '/teamgames', to: 'teamgames#show'
 
+  get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
+
 end
