@@ -3,11 +3,15 @@ import { json } from 'd3'
 
 export const useData = () => {
 
-    let jsonUrl = 'http://localhost:2000/get'
+    // let jsonUrl = 'http://localhost:2000/get'
+    let jsonUrl = 'https://gridiron-insight-and-analytics.herokuapp.com/get'
+
     let [data, setData] = useState(null)
     let [columns, setColumns] = useState(null)
 
-    let jsonUrl2 = 'http://localhost:2000/teams'
+    // let jsonUrl2 = 'http://localhost:2000/teams'
+    let jsonUrl2 = 'https://gridiron-insight-and-analytics.herokuapp.com/teams'
+    
     let [teamData, setTeamData] = useState(null)
 
     let getColumns = (data) => {
