@@ -17,7 +17,7 @@ let Home = ({ setInHome }) => {
 
             <div className='header-div'>
                 <h1>{'Welcome'}</h1>
-                <h2>Tooo Gridiron Analysis and Insight</h2>
+                <h2>To Gridiron Analysis and Insight</h2>
             </div>
             <div className='home-button'>
                 <button onClick={enterSite}>{'Enter Site'}</button>
