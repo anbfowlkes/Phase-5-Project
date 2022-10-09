@@ -46,6 +46,9 @@ body {
   }
 }
 
+* {
+  font-weight: bold;
+}
 
 #gap {
   padding-top: 100px;
